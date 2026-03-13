@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ExcelRtd - EXCEL RTD模块 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="WebTrader - Web服务器模块" href="web_trader.html" />
+    <link rel="prev" title="PortfolioManager - 投资组合管理模块" href="portfolio_manager.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="excelrtd-excel-rtd">
+<h1>ExcelRtd - EXCEL RTD模块<a class="headerlink" href="#excelrtd-excel-rtd" title="链接到此标题。">¶</a></h1>
+<section id="id1">
+<h2>功能简介<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h2>
+<p>ExcelRtd是用于<strong>在Excel中访问VeighNa程序内任意数据信息</strong>的功能模块，
+RTD全称是RealTimeData，是微软提供的主要面向金融行业中实时数据需求设计的Excel数据对接方案。ExcelRtd依赖于PyXLLC模块（www.pyxll.com），该模块属于商业软件，需要购买才能使用（提供30天免费使用）。</p>
+</section>
+<section id="pyxll">
+<h2>安装PyXLL<a class="headerlink" href="#pyxll" title="链接到此标题。">¶</a></h2>
+<p>为了使用ExcelRtd模块，需要安装PyXLL插件。步骤如下：</p>
+<p>首先进入<a class="reference external" href="https://www.pyxll.com/">PyXLL官网</a>，点击DownloadPyXLL，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_0.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_0.png" /></p>
+<p>接着跳转到下载界面，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/13.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/13.png" /></p>
+<p>这时需要填写相应字段，其中<strong>Python Version</strong>选择Python3.10，而<strong>Excel Version</strong>则根据自己安装的Excel版本选择，一般为64bit(x64)。</p>
+<p>填写完之后点击【Download PyXLL】，就会跳转到下载页面。将文件下载好之后，进入放置该文件的文件夹，按住shift键并且点击鼠标右键，选择【在此处打开PowerShell窗口】，运行以下命令：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pyxll
+pyxll<span class="w"> </span>install
+</pre></div>
+</div>
+<p>接着按照软件要求就能成功安装了。</p>
+<p>请注意，在执行到下图这一步时：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_9.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_9.png" /></p>
+<p>如果没有具体指定路径，会安装到图中的默认位置（因为后面还需要进入这个文件夹，所以请记住这个路径）。</p>
+<p>接着进入该目录下的examples目录，并把路径~/veighna_studio/Lib/site-packages/vnpy_excelrtd/下的vnpy_rtd.py放入该目录，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_5.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_5.png" /></p>
+<p>如此就算正式安装完成了。</p>
+</section>
+<section id="id2">
+<h2>加载启动<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<section id="veighna-station">
+<h3>VeighNa Station加载<a class="headerlink" href="#veighna-station" title="链接到此标题。">¶</a></h3>
+<p>启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【应用模块】栏勾选【ExcelRtd】。</p>
+</section>
+<section id="id3">
+<h3>脚本加载<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h3>
+<p>在启动脚本中添加如下代码：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 写在顶部</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">vnpy_excelrtd</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExcelRtdApp</span>
+
+<span class="c1"># 写在创建main_engine对象后</span>
+<span class="n">main_engine</span><span class="o">.</span><span class="n">add_app</span><span class="p">(</span><span class="n">ExcelRtdApp</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>启动模块<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h2>
+<p>在启动模块之前，请先连接交易接口（连接方法详见基本使用篇的连接接口部分）。看到VeighNa Trader主界面【日志】栏输出“合约信息查询成功”之后再启动模块，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png" /></p>
+<p>请注意，IB接口因为登录时无法自动获取所有的合约信息，只有在用户手动订阅行情时才能获取。因此需要在主界面上先行手动订阅合约行情，再启动模块。</p>
+<p>成功连接交易接口后，在菜单栏中点击【功能】 -&gt; 【Excel RTD】，或者点击左侧按钮栏的图表：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_6.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_6.png" /></p>
+<p>即可进入Excel RTD模块的UI界面，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/15.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/15.png" /></p>
+</section>
+<section id="id5">
+<h2>功能和配置<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h2>
+<section id="id6">
+<h3>基础应用<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h3>
+<p>在启动Excel RTD模块后，即可在Excel表格中通过PyXll调用该模块提供的功能（主要是通过rtd_tick_data函数获取实时数据）。</p>
+<p>首先打开一个excel表格，并且在每个单元格中调用rtd_tick_data函数并传入相应参数则可获取对应的数据，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/14.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/14.png" /></p>
+<p>上图是获取豆油2205四个字段实时数据（分别是bid_price_1、high_price、low_price以及last_price）的例子。</p>
+<p>从图中可以看出rtd_tick_data函数需要两个参数：一个是vt_symbol，另一个是VeighNa中定义的TickData的属性（具体属性可参考源代码vnpy.trader.object.TickData）。这两个参数都是字符串，第一个参数可以通过单元格的具体位置指定，比如“A1”表示A列第1行的数据。</p>
+<p>与此同时，在Excel RTD模块的图形界面中也能看到相应输出，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/16.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/16.png" /></p>
+</section>
+<section id="id7">
+<h3>进阶应用<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h3>
+<p>当然，上面只是简单的展示了ExcelRtd模块的功能。至于具体获取哪些数据，以什么样的方式展示在excel上，则由用户根据自己的实际需求编写。这里提供几个进阶的案例，包括期货市场报价跟踪、市场深度行情跟踪以及价差监控：</p>
+<section id="id8">
+<h4>期货市场报价跟踪<a class="headerlink" href="#id8" title="链接到此标题。">¶</a></h4>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_10.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_10.png" /></p>
+</section>
+<section id="id9">
+<h4>市场深度行情跟踪<a class="headerlink" href="#id9" title="链接到此标题。">¶</a></h4>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_11.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_11.png" /></p>
+</section>
+<section id="id10">
+<h4>价差监控<a class="headerlink" href="#id10" title="链接到此标题。">¶</a></h4>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_12.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/excel_rtd/excel_rtd_12.png" /></p>
+</section>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">社区版</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../info/index.html">交易功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">安装指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">策略应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">社区版</a><ul>
+  <li><a href="index.html">策略应用</a><ul>
+      <li>Previous: <a href="portfolio_manager.html" title="上一章">PortfolioManager - 投资组合管理模块</a></li>
+      <li>Next: <a href="web_trader.html" title="下一章">WebTrader - Web服务器模块</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/community/app/excel_rtd.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

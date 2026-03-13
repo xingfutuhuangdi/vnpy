@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>AlgoTrading - 算法委托执行交易模块 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="ScriptTrader - 脚本策略交易模块" href="script_trader.html" />
+    <link rel="prev" title="PortfolioStrategy - 多合约组合策略模块" href="portfolio_strategy.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="algotrading">
+<h1>AlgoTrading - 算法委托执行交易模块<a class="headerlink" href="#algotrading" title="链接到此标题。">¶</a></h1>
+<section id="id1">
+<h2>功能简介<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h2>
+<p>AlgoTrading是用于<strong>算法委托执行交易</strong>的模块，用户可以通过其UI界面操作来便捷完成启动算法、保存配置、停止算法等任务。</p>
+<p>算法交易负责委托订单的具体执行过程。目前，AlgoTrading提供了多种示例算法，用户可以通过把大笔订单自动拆分成合适的小单分批委托，有效降低交易成本和冲击成本（如冰山算法、狙击手算法），也可以在设定的阈值内进行高抛低吸操作（如网格算法、套利算法）。</p>
+</section>
+<section id="id2">
+<h2>加载启动<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<section id="veighna-station">
+<h3>VeighNa Station加载<a class="headerlink" href="#veighna-station" title="链接到此标题。">¶</a></h3>
+<p>启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【应用模块】栏勾选【AlgoTrading】。</p>
+</section>
+<section id="id3">
+<h3>脚本加载<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h3>
+<p>在启动脚本中添加如下代码：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 写在顶部</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">vnpy_algotrading</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlgoTradingApp</span>
+
+<span class="c1"># 写在创建main_engine对象后</span>
+<span class="n">main_engine</span><span class="o">.</span><span class="n">add_app</span><span class="p">(</span><span class="n">AlgoTradingApp</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>启动模块<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h2>
+<p>对于用户搭建的算法，需要放到algo_trading.algos目录中，才能被识别加载。</p>
+<p>在启动模块之前，请先连接交易接口（连接方法详见基本使用篇的连接接口部分）。看到VeighNa Trader主界面【日志】栏输出“合约信息查询成功”之后再启动模块，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png" /></p>
+<p>请注意，IB接口因为登录时无法自动获取所有的合约信息，只有在用户手动订阅行情时才能获取。因此需要在主界面上先行手动订阅合约行情，再启动模块。</p>
+<p>成功连接交易接口后，在菜单栏中点击【功能】-&gt; 【算法交易】，或者点击左侧按钮栏的图标：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/1.png" /></p>
+<p>即可进入算法委托执行交易模块的UI界面，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/10.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/10.png" /></p>
+</section>
+<section id="id5">
+<h2>配置算法<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h2>
+<p>配置参数要求如下：</p>
+<ul class="simple">
+<li><p>算法：在下拉框中选择要执行的交易算法；</p></li>
+<li><p>本地代码：格式为vt_symbol（合约代码 + 交易所名称）；</p></li>
+<li><p>方向：多、空；</p></li>
+<li><p>价格：委托下单的价格；</p></li>
+<li><p>数量：委托的总数量，需要拆分成小批订单进行交易；</p></li>
+<li><p>执行时间（秒）：运行该算法交易的总时间，以秒为单位；</p></li>
+<li><p>每轮间隔（秒）：每隔多少时间进行委托下单操作，以秒为单位；</p></li>
+<li><p>开平：开、平、平今、平昨。</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>启动算法<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h2>
+<p>目前VeighNa一共提供了五种常用的示例算法。本文档以时间加权平均算法（TWAP）为例，介绍算法启动过程。</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/3.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/3.png" /></p>
+<p>参数配置完成后（已保存的算法信息，通过在【配置】栏对应的算法下点击【使用】，可切换界面左侧配置的信息内容），点击【启动算法】按钮，即可立刻执行算法交易。</p>
+<p>若启动成功，则可在右上角【执行中】界面观测到该算法的执行状态。</p>
+<p>图中算法执行的任务具体为：使用时间加权平均算法，买入10000手豆油2109合约（y2409），执行价格为7420元，执行时间为600秒，每轮间隔为6秒；即每隔6秒钟，当合约卖一价小于等于7420时，以7420的价格买入100手豆油2409合约，将买入操作分割成100次。</p>
+</section>
+<section id="csv">
+<h2>CSV启动<a class="headerlink" href="#csv" title="链接到此标题。">¶</a></h2>
+<p>当有较多算法需要启动时，可以通过CSV文件来一次性批量启动。点击图形界面左侧的【CSV启动】按钮，在弹出的对话框中找到要导入的CSV文件后打开即可快速启动算法。</p>
+<p>请注意，CSV文件的格式应如下图所示，和左侧编辑区的各字段一致：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/12.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/12.png" /></p>
+<p>结合Excel的表格快速编辑功能，批量添加算法较为方便。启动成功后，CSV文件中所有算法的执行情况均会显示在【执行中】界面下。</p>
+</section>
+<section id="id7">
+<h2>停止算法<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h2>
+<p>当用户需要暂停正在执行的交易算法时，可以在【执行中】界面点击【暂停】按钮，暂停某个正在执行的算法交易，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/6.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/6.png" /></p>
+<p>当用户需要恢复已经暂停的交易算法时，可以在【执行中】界面点击【恢复】按钮，恢复某个已经暂停的算法交易，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/15.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/15.png" /></p>
+<p>当用户需要停止正在执行的交易算法时，可以在【执行中】界面点击【停止】按钮，停止某个正在执行的算法交易，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/6.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/6.png" /></p>
+<p>用户也可以在委托交易界面点击最下方的【全部停止】按钮，一键停止所有执行中的算法交易，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/7.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/7.png" /></p>
+</section>
+<section id="id8">
+<h2>数据监控<a class="headerlink" href="#id8" title="链接到此标题。">¶</a></h2>
+<p>数据监控界面由四个部分构成：</p>
+<p>执行中组件：显示正在执行的算法交易，包括：算法、参数、变量和状态。成功启动算法之后，切换到右上角【执行中】界面，会显示该算法的执行状态，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/6.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/6.png" /></p>
+<p>已结束组件：显示已完成的算法交易，同样包括：算法、参数、变量和状态。算法结束或者停止之后，切换到右上角【已结束】界面，会显示该算法的执行状态，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/9.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/9.png" /></p>
+<p>日志组件：显示启动、停止、完成算法的相关日志信息。在打开算法交易模块后，会进行初始化，故【日志】组件会首先输出“算法交易引擎启动”，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/11.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/11.png" /></p>
+</section>
+<section id="id9">
+<h2>示例算法<a class="headerlink" href="#id9" title="链接到此标题。">¶</a></h2>
+<p>示例算法路径位于vnpy_algotrading.algos文件夹下（请注意，个别算法是没有写开平方向的，若有需要，可基于自身需求进行个性化修改）。目前，算法交易模块提供了以下五种内置算法：</p>
+<section id="twap">
+<h3>TWAP - 时间加权平均算法<a class="headerlink" href="#twap" title="链接到此标题。">¶</a></h3>
+<p>时间加权平均算法（TWAP）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>将委托数量平均分布在某个时间区域内，每隔一段时间用指定的价格挂出买单（或者卖单）。</p></li>
+<li><p>买入情况：卖一价低于目标价格时，发出委托，委托数量在剩余委托量与委托分割量中取最小值。</p></li>
+<li><p>卖出情况：买一价高于目标价格时，发出委托，委托数量在剩余委托量与委托分割量中取最小值。</p></li>
+</ul>
+</section>
+<section id="iceberg">
+<h3>Iceberg - 冰山算法<a class="headerlink" href="#iceberg" title="链接到此标题。">¶</a></h3>
+<p>冰山算法（Iceberg）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>在某个价位挂单，但是只挂一部分，直到全部成交。</p></li>
+<li><p>买入情况：先检查撤单，最新Tick卖一价低于目标价格，执行撤单；若无活动委托，发出委托，委托数量在剩余委托量与挂出委托量中取最小值。</p></li>
+<li><p>卖出情况：先检查撤单，最新Tick买一价高于目标价格，执行撤单；若无活动委托，发出委托，委托数量在剩余委托量与挂出委托量中取最小值。</p></li>
+</ul>
+</section>
+<section id="sniper">
+<h3>Sniper - 狙击手算法<a class="headerlink" href="#sniper" title="链接到此标题。">¶</a></h3>
+<p>狙击手算法（Sniper）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>监控最新Tick推送的行情，发现好的价格立刻报价成交。</p></li>
+<li><p>买入情况：最新Tick卖一价低于目标价格时，发出委托，委托数量在剩余委托量与卖一量中取最小值。</p></li>
+<li><p>卖出情况：最新Tick买一价高于目标价格时，发出委托，委托数量在剩余委托量与买一量中取最小值。</p></li>
+</ul>
+</section>
+<section id="stop">
+<h3>Stop - 条件委托算法<a class="headerlink" href="#stop" title="链接到此标题。">¶</a></h3>
+<p>条件委托算法（Stop）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>监控最新Tick推送的行情，发现行情突破立刻报价成交。</p></li>
+<li><p>买入情况：Tick最新价高于目标价格时，发出委托，委托价为目标价格加上超价。</p></li>
+<li><p>卖出情况：Tick最新价低于目标价格时，发出委托，委托价为目标价格减去超价。</p></li>
+</ul>
+</section>
+<section id="bestlimit">
+<h3>BestLimit - 最优限价算法<a class="headerlink" href="#bestlimit" title="链接到此标题。">¶</a></h3>
+<p>最优限价算法（BestLimit）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>监控最新Tick推送的行情，发现好的价格立刻报价成交。</p></li>
+<li><p>买入情况：先检查撤单：最新Tick买一价不等于目标价格时，执行撤单；若无活动委托，发出委托，委托价格为最新Tick买一价，委托数量为剩余委托量。</p></li>
+<li><p>卖出情况：先检查撤单：最新Tick买一价不等于目标价格时，执行撤单；若无活动委托，发出委托，委托价格为最新Tick卖一价，委托数量为剩余委托量。</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">社区版</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../info/index.html">交易功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">安装指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">策略应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">社区版</a><ul>
+  <li><a href="index.html">策略应用</a><ul>
+      <li>Previous: <a href="portfolio_strategy.html" title="上一章">PortfolioStrategy - 多合约组合策略模块</a></li>
+      <li>Next: <a href="script_trader.html" title="下一章">ScriptTrader - 脚本策略交易模块</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/community/app/algo_trading.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

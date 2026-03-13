@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>历史数据管理 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="智能交易" href="../extension/index.html" />
+    <link rel="prev" title="事前交易风控" href="elite_riskmanager.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>历史数据管理<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h1>
+<p>DataManager是用于<strong>历史数据管理</strong>的功能模块，用户可以通过其UI界面操作来便捷完成数据下载、数据查看、数据导入、数据导出和数据更新等任务。</p>
+<section id="id2">
+<h2>主要优势<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<p>DataManager模块不仅提供了数据下载、数据查看、数据导入、数据导出和数据更新支持，还提供了期权数据更新功能，以实现更加强大的期权策略支持。</p>
+</section>
+<section id="id3">
+<h2>启动模块<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h2>
+<p>DataManager模块需要启动之前通过【策略应用】标签页加载。</p>
+<p>启动登录VeighNa Elite Trader后，在菜单栏中点击【功能】-&gt; 【历史数据管理】，或者点击左侧按钮栏的图标：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/1.png" /></p>
+<p>即可进入历史数据管理UI界面，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/2.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/2.png" /></p>
+</section>
+<section id="id4">
+<h2>下载数据<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h2>
+<p>DataManager模块提供了一键下载历史数据的功能，点击界面上方的【下载数据】按钮，会弹出下载历史数据窗口，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/3.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/3.png" /></p>
+<p>需要填写代码、交易所、周期以及开始日期四个字段信息：</p>
+<span id="jump"><ul class="simple">
+<li><p>代码</p>
+<ul>
+<li><p>代码格式为合约品种</p></li>
+<li><p>如IF2412、rb2406</p></li>
+</ul>
+</li>
+<li><p>交易所</p>
+<ul>
+<li><p>合约交易的交易所（点击窗口右侧箭头按钮可选择VeighNa支持的交易所列表）</p></li>
+</ul>
+</li>
+<li><p>周期</p>
+<ul>
+<li><p>MINUTE（1分钟K线）</p></li>
+<li><p>HOUR（1小时K线）</p></li>
+<li><p>DAILY（日K线）</p></li>
+<li><p>WEEKLY（周K线）</p></li>
+<li><p>TICK（一个Tick）</p></li>
+</ul>
+</li>
+<li><p>开始日期</p>
+<ul>
+<li><p>格式为yy/mm/dd</p></li>
+<li><p>如2021/6/6</p></li>
+</ul>
+</li>
+</ul>
+</span><p>填写完成后，点击下方【下载】按钮启动下载程序，下载成功如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/4.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/4.png" /></p>
+<p>注意下载完成后的历史数据会保存在本地数据库中，后续回测或实盘时可以直接使用，无需每次都重复下载。</p>
+<section id="id5">
+<h3>数据来源：数据服务（期货、股票、期权）<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h3>
+<p>以迅投研为例，<a class="reference external" href="https://xuntou.net/#/signup?utm_source=vnpy">迅投研</a>提供国内期货、股票以及期权的历史数据。在使用前需要保证数据服务已经正确配置（配置方法详见基本使用篇的全局配置部分）。</p>
+</section>
+<section id="ib">
+<h3>数据来源：IB（外盘期货、股票、现货等）<a class="headerlink" href="#ib" title="链接到此标题。">¶</a></h3>
+<p>Interactive Brokers盈透证券（IB）提供丰富的外盘市场历史数据下载（包括股票、期货、期权、现货等），注意下载前需要先启动IB TWS交易软件，并在VeighNa Elite Trader主界面连接好IB接口，并订阅所需合约行情。</p>
+</section>
+</section>
+<section id="id6">
+<h2>导入数据<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h2>
+<p>如果已经从其他渠道获取到了CSV格式的数据文件，可以通过DataManager的数据导入功能，将其快速导入VeighNa数据库。点击右上角的【导入数据】按钮，会弹出从如下图所示的对话框：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/5.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/5.png" /></p>
+<p>点击顶部的【选择文件】按钮，会弹出窗口选择要导入的CSV文件路径，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/6.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/6.png" /></p>
+<p>然后配置数据导入的相关细节：</p>
+<ul class="simple">
+<li><p>合约信息</p>
+<ul>
+<li><p>格式详见本章<a class="reference external" href="#jump">下载数据</a>部分的介绍；</p></li>
+<li><p>请注意，导入的合约代码（symbol）和交易所（exchange）两个字段组合起来，才能构成在CTA回测等模块中使用的本地代码（vt_symbol）；</p></li>
+<li><p>若合约代码为<strong>rb2406</strong>，交易所选择<strong>SHFE</strong>（上期所），则在CtaBacktester中回测要用到的本地代码应为<strong>rb2406.SHFE</strong>；</p></li>
+<li><p>可以对时间戳时区进行选择；</p></li>
+</ul>
+</li>
+<li><p>表头信息</p>
+<ul>
+<li><p>可查看CSV文件的表头信息，并将对应的表头字符串输入在表头信息中；</p></li>
+<li><p>对于CSV文件中不存在的字段（如股票数据没有【持仓量】字段），请留空即可；</p></li>
+</ul>
+</li>
+<li><p>格式信息</p>
+<ul>
+<li><p>采用Python内置库datetime模块的时间格式定义，来解析时间戳字符串；</p></li>
+<li><p>默认时间格式为&quot;%Y-%m-%d %H:%M:%S&quot;，对应的是&quot;2024-1-3 0:00:00&quot;；</p></li>
+<li><p>如果时间戳是&quot;2024-1-3  0:00&quot;，那么时间格式应该是&quot;%Y-%m-%d %H:%M&quot;。</p></li>
+</ul>
+</li>
+</ul>
+<p>填写完毕，则如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/7.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/7.png" /></p>
+<p>点击【确定】按钮，开始从CSV文件导入数据到数据库中。导入过程中界面会处于半卡住的情况，CSV文件越大（数据量越多），卡住的时间也会越长。成功载入之后，会弹出窗口显示载入成功，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/8.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/8.png" /></p>
+</section>
+<section id="id7">
+<h2>查看数据<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h2>
+<p>目前VeighNa Elite Trader中获取数据的方式一共有三种：</p>
+<ul class="simple">
+<li><p>通过数据服务或者交易接口下载</p></li>
+<li><p>从CSV文件导入</p></li>
+<li><p>使用DataRecorder模块录制</p></li>
+</ul>
+<p>不管采用何种方法获取数据，点击左上角的【刷新】按钮，即可看到当前数据库中已有数据的统计情况（Tick数据除外）。刷新过程中界面可能会有偶尔的卡顿，通常对于越多的数据，卡顿的时间也会越长。刷新成功之后，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/9.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/9.png" /></p>
+<p>点击【查看】按钮，则会弹出选择数据要查看数据区间（每个时间频率下都可基于交易所查看）的对话框，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/12.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/12.png" /></p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/11.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/11.png" /></p>
+<p>选择好要显示的数据范围和交易所后，点击【确定】按钮即可在右侧表格中看到每个时间点上具体的数据字段：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/13.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/13.png" /></p>
+<p>在数据库已有数据的前提下，点击表格最左侧【数据】列下的数据频率前的小箭头，则可展开或收起该数据频率下的合约信息显示。</p>
+<p>若表格的右侧区域显示不完整，可拖动界面底端的横向滚动条进行调整。</p>
+</section>
+<section id="id8">
+<h2>导出数据<a class="headerlink" href="#id8" title="链接到此标题。">¶</a></h2>
+<p>如果想导出数据库中的数据到本地CSV文件，则可选择要导出的合约，点击该合约所在行右侧的【导出】按钮后，会弹出选择数据区间对话框，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/14.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/14.png" /></p>
+<p>选择要导出的数据区间范围，点击【确定】后，会再次弹出对话框选择输出文件的位置，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/15.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/15.png" /></p>
+<p>选择好导出文件要放置的目录，填写完CSV文件名之后，点击【保存】按钮即可完成CSV文件的导出。</p>
+</section>
+<section id="id9">
+<h2>删除数据<a class="headerlink" href="#id9" title="链接到此标题。">¶</a></h2>
+<p>若想删除特定合约数据，则可选择要删除的合约，点击该合约行数据右侧的【删除】按钮后，会弹出对话框，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/16.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/16.png" /></p>
+<p>点击【OK】按钮即可删除该合约数据，并弹出删除成功窗口，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/17.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/17.png" /></p>
+<p>此时再点击【刷新】按钮，图形界面上已经没有该合约的信息了，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/18.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/18.png" /></p>
+</section>
+<section id="id10">
+<h2>更新数据<a class="headerlink" href="#id10" title="链接到此标题。">¶</a></h2>
+<p>在用户<strong>配置了数据服务</strong>或者<strong>交易接口（已连接）提供充足的历史数据</strong>的情况下，点击界面上方的【更新数据】按钮，即可基于图形界面上显示的所有合约数据，执行一键自动下载更新。</p>
+<p>更新前图形界面显示如下图：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/19.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/19.png" /></p>
+<p>点击【更新数据】按钮，会弹出更新进度的信息提示对话框。此时DataManager会自动<strong>从数据库中已有数据的结束日期开始，下载截止到当前最新日期</strong>的数据，并更新到数据库中。</p>
+<p>如果需要更新的数据较少，则可能瞬间完成更新任务，此时没有观察到更新对话框也是正常的。</p>
+<p>更新完成后，点击左上角【刷新】按钮，即可看到该合约数据已更新至当前最新日期。</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/20.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/20.png" /></p>
+</section>
+<section id="id11">
+<h2>数据范围<a class="headerlink" href="#id11" title="链接到此标题。">¶</a></h2>
+<p>请注意，虽然界面上显示了数据库中已有数据的开始和结束时间，<strong>但并不代表数据库中储存了从开始时间到结束时间之间所有的数据</strong>。</p>
+<p>如果依赖于交易接口提供的历史数据，一但开始时间和结束时间之间的时间跨度超过接口所能提供的数据范围，就可能导致数据之间出现缺失的情况。因此建议更新数据之后，点击【查看】按钮检查一下该合约数据是否连续。</p>
+</section>
+<section id="id12">
+<h2>更新期权数据<a class="headerlink" href="#id12" title="链接到此标题。">¶</a></h2>
+<p>对界面右上角的【交易所】和【开始时间】进行配置之后，点击【更新期权数据】按钮，即可基于交易所更新数据库里存储的期权合约信息和历史数据，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/21.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/21.png" /></p>
+<p>更新完成后，点击左上角【刷新】按钮，即可看到期权合约数据已更新至当前最新日期。</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/22.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/22.png" /></p>
+<p>若在更新过程中想停止数据更新，可以点击右上角的【停止数据更新按钮】，即可停止更新任务，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/23.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/datamanager/23.png" /></p>
+<p>请注意：</p>
+<ul class="simple">
+<li><p>目前只有配置了迅投研或米筐才能使用期权数据更新功能</p></li>
+<li><p>上图是迅投研更新的截图，若使用配置米筐为数据服务，更新过程中不会出现“开始更新合约历史信息”的输出</p></li>
+<li><p>如果在更新过程中点击图形界面右上角的叉，关闭历史数据管理UI界面的话，更新任务会停止</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">社区版</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Elite版</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../info/index.html">安装使用</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">量化策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extension/index.html">智能交易</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Elite版</a><ul>
+  <li><a href="index.html">量化策略</a><ul>
+      <li>Previous: <a href="elite_riskmanager.html" title="上一章">事前交易风控</a></li>
+      <li>Next: <a href="../extension/index.html" title="下一章">智能交易</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/elite/strategy/elite_datamanager.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

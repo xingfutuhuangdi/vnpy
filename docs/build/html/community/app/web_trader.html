@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>WebTrader - Web服务器模块 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="Elite版" href="../../elite/index.html" />
+    <link rel="prev" title="ExcelRtd - EXCEL RTD模块" href="excel_rtd.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="webtrader-web">
+<h1>WebTrader - Web服务器模块<a class="headerlink" href="#webtrader-web" title="链接到此标题。">¶</a></h1>
+<section id="id1">
+<h2>功能简介<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h2>
+<p>WebTrader是用于<strong>Web应用后端服务</strong>的功能模块，用户可以通过浏览器（而非PyQt桌面端）来运行管理VeighNa量化策略交易。</p>
+</section>
+<section id="id2">
+<h2>架构设计<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<p>WebTrader采用了FastAPI作为后端服务器，支持REST主动请求调用和WebSocket被动数据推送，运行时整体框架图如下：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_1.png" /></p>
+<p>后端服务包括两个独立的进程：</p>
+<ul class="simple">
+<li><p>策略交易进程</p>
+<ul>
+<li><p>运行VeighNa Trader的进程，负责所有策略交易功能的运行；</p></li>
+<li><p>启动了RpcServer用于对Web服务进程功能调用；</p></li>
+</ul>
+</li>
+<li><p>Web服务进程</p>
+<ul>
+<li><p>运行了FastAPI的进程，负责对外提供Web访问的服务；</p></li>
+<li><p>启动了RpcClient用于调用策略交易进程的相关功能。</p></li>
+</ul>
+</li>
+</ul>
+<p>从网页端到策略交易进程的双向通讯模式包括：</p>
+<ul class="simple">
+<li><p>主动请求调用（订阅行情、挂撤单、查询数据）</p>
+<ul>
+<li><p>浏览器发起REST API调用（访问某个URL地址提交数据）到Web服务进程；</p></li>
+<li><p>Web服务进程收到后，转换为RPC请求（Req-Rep通讯模式）发送给策略交易进程；</p></li>
+<li><p>策略交易进程执行请求处理后，返回结果给Web服务进程；</p></li>
+<li><p>Web服务进程返回数据给浏览器。</p></li>
+</ul>
+</li>
+<li><p>被动数据推送（行情推送、委托推送）</p>
+<ul>
+<li><p>浏览器发起Websocket连接到Web服务进程；</p></li>
+<li><p>策略交易进程通过RPC推送（Pub-Sub通讯），将数据推送给Web服务进程；</p></li>
+<li><p>Web服务进程收到后，将数据通过Websocket API实时推送给浏览器（JSON格式）。</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h2>加载启动<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h2>
+<section id="veighna-station">
+<h3>VeighNa Station加载<a class="headerlink" href="#veighna-station" title="链接到此标题。">¶</a></h3>
+<p>启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【应用模块】栏勾选【WebTrader】。</p>
+</section>
+<section id="id4">
+<h3>脚本加载<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h3>
+<p>在启动脚本中添加如下代码：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 写在顶部</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">vnpy_webtrader</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebTraderApp</span>
+
+<span class="c1"># 写在创建main_engine对象后</span>
+<span class="n">main_engine</span><span class="o">.</span><span class="n">add_app</span><span class="p">(</span><span class="n">WebTraderApp</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>启动模块<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h3>
+<p>在启动模块之前，请先连接登录交易接口（连接方法详见基本使用篇的连接接口部分）。看到VeighNa Trader主界面【日志】栏输出“合约信息查询成功”之后再启动模块，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/market_radar/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/market_radar/1.png" /></p>
+<p>成功连接交易接口后，在菜单栏中点击【功能】-&gt; 【Web服务】，或者点击左侧按钮栏的图标：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_0.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_0.png" /></p>
+<p>即可进入RPC服务模块的UI界面，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_3.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_3.png" /></p>
+<p>此时系统中运行的只包括策略交易进程，左上角区域的服务器配置选项包括：</p>
+<ul class="simple">
+<li><p>用户名和密码：从网页端登录Web应用时所用的用户名和密码，使用时请修改为自己想用的用户名和密码（通过启动目录.vntrader下的web_trader_setting.json修改），请注意这里的用户名和密码与底层交易接口无关；</p></li>
+<li><p>请求和订阅地址：架构图中Web服务进程和策略交易进程之间，进行RPC通讯的地址，注意端口不要和其他程序冲突即可。</p></li>
+</ul>
+<p>点击启动按钮后，会根据用户输入的配置信息在系统后台启动Web服务进程，同时在右侧区域输出Fast API运行过程中的相关日志信息。</p>
+</section>
+</section>
+<section id="id6">
+<h2>接口演示<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h2>
+<p>在启动Web服务后，在浏览器打开网址<a class="reference external" href="http://127.0.0.1:8000/docs">http://127.0.0.1:8000/docs</a>，即可看到如下图所示的接口文档网页：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_2.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_2.png" /></p>
+<p>这里包含了目前WebTrader支持的相关接口信息，下面结合vnpy_webtrader项目下提供的<a class="reference external" href="https://github.com/vnpy/vnpy_webtrader/blob/main/script/test.ipynb">Jupyter Notebook</a>进行相关的接口演示。</p>
+<section id="token">
+<h3>获得令牌（token）<a class="headerlink" href="#token" title="链接到此标题。">¶</a></h3>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:8000/&quot;</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;vnpy&quot;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;vnpy&quot;</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="n">url</span> <span class="o">+</span> <span class="s2">&quot;token&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">},</span>
+    <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;accept&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;access_token&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>首先导入相应的模块requests和json，接着定义url和用户名和密码，通过requests的post方法传入相应参数就能够获得令牌（token），后续访问使用各种接口直接传入token即可。</p>
+</section>
+<section id="id7">
+<h3>行情订阅<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="s2">&quot;tick/&quot;</span> <span class="o">+</span> <span class="s2">&quot;cu2112.SHFE&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span><span class="s2">&quot;Bearer &quot;</span> <span class="o">+</span> <span class="n">token</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>通过上述命令可实现对合约cu2112.SHFE的订阅，同时可以在图形界面收到该合约的行情数据推送，入下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_4.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_4.png" /></p>
+</section>
+<section id="id8">
+<h3>批量查询<a class="headerlink" href="#id8" title="链接到此标题。">¶</a></h3>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 查询函数</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">query_test</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;查询对应类型的数据&quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="n">url</span> <span class="o">+</span> <span class="n">name</span><span class="p">,</span>
+        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer &quot;</span> <span class="o">+</span> <span class="n">token</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="c1"># 批量查询</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;tick&quot;</span><span class="p">,</span> <span class="s2">&quot;contract&quot;</span><span class="p">,</span> <span class="s2">&quot;account&quot;</span><span class="p">,</span> <span class="s2">&quot;position&quot;</span><span class="p">,</span> <span class="s2">&quot;order&quot;</span><span class="p">,</span> <span class="s2">&quot;trade&quot;</span><span class="p">]:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">query_test</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>如有需要，同样可以通过发出主动请求查询相关的数据，比如tick数据、合约数据、账户数据、 持仓数据、委托数据以及成交数据。</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_5.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_5.png" /></p>
+</section>
+<section id="id9">
+<h3>委托测试<a class="headerlink" href="#id9" title="链接到此标题。">¶</a></h3>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 委托测试</span>
+<span class="n">req</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;symbol&quot;</span><span class="p">:</span> <span class="s2">&quot;cu2112&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;exchange&quot;</span><span class="p">:</span> <span class="s2">&quot;SHFE&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="s2">&quot;多&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;限价&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;volume&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mi">71030</span><span class="p">,</span>
+    <span class="s2">&quot;offset&quot;</span><span class="p">:</span> <span class="s2">&quot;开&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="s2">&quot;WebTrader&quot;</span>
+<span class="p">}</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="n">url</span> <span class="o">+</span> <span class="s2">&quot;order&quot;</span><span class="p">,</span>
+    <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer &quot;</span> <span class="o">+</span> <span class="n">token</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">vt_orderid</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">vt_orderid</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>下单后同样能在图形化界面看到委托信息，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_6.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_6.png" /></p>
+</section>
+<section id="id10">
+<h3>撤单测试<a class="headerlink" href="#id10" title="链接到此标题。">¶</a></h3>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 撤单测试</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+    <span class="n">url</span> <span class="o">+</span> <span class="s2">&quot;order/&quot;</span> <span class="o">+</span> <span class="n">vt_orderid</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer &quot;</span> <span class="o">+</span> <span class="n">token</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>如果想将之前下的委托撤销，可以发送主动请求，结果同样会在图形化界面更新，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_7.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_7.png" /></p>
+</section>
+<section id="websocket">
+<h3>Websocket测试<a class="headerlink" href="#websocket" title="链接到此标题。">¶</a></h3>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Weboscket测试</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">websocket</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_connection</span>
+
+<span class="n">ws</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">(</span><span class="s2">&quot;ws://127.0.0.1:8000/ws/?token=&quot;</span> <span class="o">+</span> <span class="n">token</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span>  <span class="n">ws</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Received &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">result</span><span class="p">)</span>
+
+<span class="n">ws</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>通过Websocket可以被动接收策略交易进程推送过来的行情数据和委托数据等，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_8.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_8.png" /></p>
+</section>
+</section>
+<section id="id11">
+<h2>后续计划<a class="headerlink" href="#id11" title="链接到此标题。">¶</a></h2>
+<p>WebTrader仅实现了Web应用的后端（提供了浏览器访问数据的接口），而前端页面（也就是浏览器中看到的网页）则按照之前的计划交给社区用户来实现，欢迎大家贡献代码。</p>
+<p>同时WebTrader目前只支持基础的手动交易功能，后续将会逐渐加上策略交易应用相关的管理功能（比如CtaStrategy的相关调用）。</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">社区版</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../info/index.html">交易功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">安装指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">策略应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">社区版</a><ul>
+  <li><a href="index.html">策略应用</a><ul>
+      <li>Previous: <a href="excel_rtd.html" title="上一章">ExcelRtd - EXCEL RTD模块</a></li>
+      <li>Next: <a href="../../elite/index.html" title="下一章">Elite版</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/community/app/web_trader.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

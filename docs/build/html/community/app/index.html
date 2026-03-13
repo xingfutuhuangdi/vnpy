@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>策略应用 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="CtaStrategy - CTA自动交易模块" href="cta_strategy.html" />
+    <link rel="prev" title="Mac安装指南" href="../install/mac_install.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>策略应用<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Elite版</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cta_strategy.html">CtaStrategy - CTA自动交易模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cta_strategy.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_strategy.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_strategy.html#id4">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_strategy.html#id5">添加策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_strategy.html#id7">管理策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_strategy.html#id15">运行日志</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_strategy.html#id18">停止单</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_strategy.html#id19">批量操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_strategy.html#id23">移仓助手</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_strategy.html#cta-ctatemplate">CTA策略模板（CtaTemplate）</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cta_backtester.html">CtaBacktester - CTA回测研究模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cta_backtester.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_backtester.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_backtester.html#id4">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_backtester.html#id5">下载数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_backtester.html#id7">执行回测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_backtester.html#id8">结果分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_backtester.html#id12">参数优化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cta_backtester.html#id17">策略代码</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spread_trading.html">SpreadTrading - 多合约价差套利模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spread_trading.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spread_trading.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spread_trading.html#id4">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spread_trading.html#id5">创建价差合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spread_trading.html#id10">手动交易</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spread_trading.html#id14">自动交易</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spread_trading.html#spreadstrategytemplate">价差交易策略模板（SpreadStrategyTemplate）</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="option_master.html">OptionMaster - 期权波动率交易模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="option_master.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="option_master.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="option_master.html#id4">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="option_master.html#id5">配置组合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="option_master.html#id6">行情监控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="option_master.html#id7">快速交易</a></li>
+<li class="toctree-l2"><a class="reference internal" href="option_master.html#id8">持仓希腊值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="option_master.html#id9">升贴水监控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="option_master.html#id10">波动率曲线</a></li>
+<li class="toctree-l2"><a class="reference internal" href="option_master.html#delta">Delta对冲</a></li>
+<li class="toctree-l2"><a class="reference internal" href="option_master.html#id11">情景分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="option_master.html#id12">波动率管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="option_master.html#id13">电子眼</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_strategy.html">PortfolioStrategy - 多合约组合策略模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_strategy.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_strategy.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_strategy.html#id4">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_strategy.html#id5">添加策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_strategy.html#id6">管理策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_strategy.html#id13">运行日志</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_strategy.html#id16">批量操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_strategy.html#strategytemplate">多合约组合策略模板（StrategyTemplate）-- 基础</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_strategy.html#id29">多合约组合策略模板（StrategyTemplate）-- 进阶</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algo_trading.html">AlgoTrading - 算法委托执行交易模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algo_trading.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algo_trading.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algo_trading.html#id4">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algo_trading.html#id5">配置算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algo_trading.html#id6">启动算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algo_trading.html#csv">CSV启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algo_trading.html#id7">停止算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algo_trading.html#id8">数据监控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algo_trading.html#id9">示例算法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="script_trader.html">ScriptTrader - 脚本策略交易模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="script_trader.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script_trader.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script_trader.html#id4">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script_trader.html#id8">脚本策略模板</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script_trader.html#id9">功能函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="paper_account.html">PaperAccount - 本地仿真交易模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="paper_account.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paper_account.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paper_account.html#id4">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paper_account.html#id5">功能配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paper_account.html#id6">数据监控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paper_account.html#id7">业务逻辑</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_recorder.html">DataRecorder - 实盘行情记录模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_recorder.html#id1">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_recorder.html#id3">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_recorder.html#id4">添加记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_recorder.html#id5">移除记录</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_manager.html">DataManager - 历史数据管理模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html#id4">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html#id5">下载数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html#id7">导入数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html#id8">查看数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html#id9">导出数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html#id10">删除数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html#id11">更新数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_manager.html#id12">数据范围</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="risk_manager.html">RiskManager - 事前风控管理模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="risk_manager.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_manager.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_manager.html#id4">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_manager.html#id5">启动风控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_manager.html#id6">参数修改</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_manager.html#id7">停止风控</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rpc_service.html">RpcService - RPC服务器模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rpc_service.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpc_service.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpc_service.html#id5">配置和使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpc_service.html#id8">RPC简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpc_service.html#rpc-rpcservice">RPC服务（RpcService）的应用场景</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chart_wizard.html">ChartWizard - 实时K线图表模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="chart_wizard.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chart_wizard.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chart_wizard.html#id4">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chart_wizard.html#id5">新建图表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chart_wizard.html#id6">查看图表</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="portfolio_manager.html">PortfolioManager - 投资组合管理模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_manager.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_manager.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_manager.html#id4">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_manager.html#id5">组合信息表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_manager.html#id6">成交记录表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portfolio_manager.html#id7">刷新频率</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="excel_rtd.html">ExcelRtd - EXCEL RTD模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="excel_rtd.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excel_rtd.html#pyxll">安装PyXLL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excel_rtd.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excel_rtd.html#id4">启动模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excel_rtd.html#id5">功能和配置</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="web_trader.html">WebTrader - Web服务器模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="web_trader.html#id1">功能简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_trader.html#id2">架构设计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_trader.html#id3">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_trader.html#id6">接口演示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_trader.html#id11">后续计划</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">社区版</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../info/index.html">交易功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">安装指南</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">策略应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">社区版</a><ul>
+      <li>Previous: <a href="../install/mac_install.html" title="上一章">Mac安装指南</a></li>
+      <li>Next: <a href="cta_strategy.html" title="下一章">CtaStrategy - CTA自动交易模块</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/community/app/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

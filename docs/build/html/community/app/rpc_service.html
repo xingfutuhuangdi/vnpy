@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>RpcService - RPC服务器模块 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="ChartWizard - 实时K线图表模块" href="chart_wizard.html" />
+    <link rel="prev" title="RiskManager - 事前风控管理模块" href="risk_manager.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="rpcservice-rpc">
+<h1>RpcService - RPC服务器模块<a class="headerlink" href="#rpcservice-rpc" title="链接到此标题。">¶</a></h1>
+<section id="id1">
+<h2>功能简介<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h2>
+<p>RpcService是用于<strong>将VeighNa Trader进程转化为RPC服务器</strong>的功能模块，对外提供交易路由、行情数据推送、持仓资金查询等功能。</p>
+<p>关于RPC的具体应用场景请参考本文档结尾的【RPC的应用场景】版块。</p>
+</section>
+<section id="id2">
+<h2>加载启动<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<section id="veighna-station">
+<h3>VeighNa Station加载<a class="headerlink" href="#veighna-station" title="链接到此标题。">¶</a></h3>
+<p>启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【应用模块】栏勾选【RpcService】。</p>
+</section>
+<section id="id3">
+<h3>脚本加载<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h3>
+<p>在启动脚本中添加如下代码：
+›</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 写在顶部</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">vnpy_rpcservice</span><span class="w"> </span><span class="kn">import</span> <span class="n">RpcServiceApp</span>
+
+<span class="c1"># 写在创建main_engine对象后</span>
+<span class="n">main_engine</span><span class="o">.</span><span class="n">add_app</span><span class="p">(</span><span class="n">RpcServiceApp</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>启动模块<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h3>
+<p>在启动模块之前，请先连接登录交易接口（连接方法详见基本使用篇的连接接口部分）。看到VeighNa Trader主界面【日志】栏输出“合约信息查询成功”之后再启动模块，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/market_radar/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/market_radar/1.png" /></p>
+<p>成功连接交易接口后，在菜单栏中点击【功能】-&gt; 【RPC服务】，或者点击左侧按钮栏的图标：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/rpc_service/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/rpc_service/1.png" /></p>
+<p>即可进入RPC服务模块的UI界面，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/rpc_service/2.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/rpc_service/2.png" /></p>
+</section>
+</section>
+<section id="id5">
+<h2>配置和使用<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h2>
+<section id="rpc">
+<h3>配置RPC服务<a class="headerlink" href="#rpc" title="链接到此标题。">¶</a></h3>
+<p>RPC服务基于ZeroMQ开发，对外的通讯地址包括：</p>
+<ul class="simple">
+<li><p><strong>请求响应地址</strong></p>
+<ul>
+<li><p>用于被动接收客户端发送过来的请求，执行对应任务后返回结果；</p></li>
+<li><p>功能举例：</p>
+<ul>
+<li><p>行情订阅；</p></li>
+<li><p>委托下单；</p></li>
+<li><p>委托撤单；</p></li>
+<li><p>初始化信息查询（合约、持仓、资金等）；</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>事件广播地址</strong></p>
+<ul>
+<li><p>用于主动推送服务端收到的事件数据，到所有已连接的客户端；</p></li>
+<li><p>功能举例：</p>
+<ul>
+<li><p>行情推送；</p></li>
+<li><p>委托推送；</p></li>
+<li><p>成交推送。</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>以上地址均采用ZeroMQ的地址格式，由<strong>通讯协议</strong>（如tcp://）和<strong>通讯地址</strong>（如127.0.0.1:2014）两部分组成。</p>
+<p>RPC服务支持的通讯协议包括：</p>
+<ul class="simple">
+<li><p><strong>TCP协议</strong></p>
+<ul>
+<li><p>协议前缀：tcp://</p></li>
+<li><p>Windows和Linux系统均可使用</p></li>
+<li><p>可用于本机通讯（127.0.0.1）或者网络通讯（网络IP地址）</p></li>
+</ul>
+</li>
+<li><p><strong>IPC协议</strong></p>
+<ul>
+<li><p>协议前缀：ipc://</p></li>
+<li><p>只能在Linux系统上使用（POSIX本地端口通讯）</p></li>
+<li><p>只能用于本机通讯，后缀为任意字符串内容</p></li>
+</ul>
+</li>
+</ul>
+<p>一般推荐直接使用TCP协议（以及默认地址），对于使用Ubuntu系统且希望追求更低通讯延时的用户可以使用IPC协议。</p>
+</section>
+<section id="id6">
+<h3>运行RPC服务<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h3>
+<p>完成通讯地址的配置后，点击【启动】按钮即可启动RPC服务，日志区域会输出&quot;RPC服务启动成功&quot;，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/rpc_service/3.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/rpc_service/3.png" /></p>
+<p>启动成功后，即可在另一VeighNa Trader进程中（客户端）使用RpcGateway来连接</p>
+<p>如需停止RPC服务可以点击【停止】按钮，此时日志输出&quot;RPC服务已停止&quot;。</p>
+</section>
+<section id="id7">
+<h3>连接客户端<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h3>
+<p>VeighNa提供了与RpcService配套使用的RpcGateway，作为客户端的标准接口来连接服务端并进行交易，对上层应用透明。</p>
+<p>从客户端的视角看，RpcGateway是类似CTP的接口。因为已经在服务端统一完成外部交易账户的配置连接，客户端只需要和服务器端进行通讯即可，无需再次输入账户密码等信息。</p>
+<p>在客户端加载RpcGateway接口后，进入VeighNa Trader主界面，点击菜单栏中【系统】-&gt;【连接RPC】，在弹出的窗口中点击【连接】即可连接使用，如下图所示。</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/rpc_service/5.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/rpc_service/5.png" /></p>
+<p>【主动请求地址】和【推送订阅地址】，分别对应之前在服务端配置的【请求响应地址】和【事件广播地址】，注意不要写反。</p>
+</section>
+</section>
+<section id="id8">
+<h2>RPC简介<a class="headerlink" href="#id8" title="链接到此标题。">¶</a></h2>
+<p>由于全局解释器锁GIL的存在，导致单一Python进程只能利用CPU单核的算力。远程过程调用（Remote Procedure Call Protocol, RPC）服务可以用于<strong>跨进程或者跨网络的服务功能调用</strong>，有效解决了上述问题。</p>
+<p>由一个特定的进程连接交易接口充当<strong>服务器</strong>的角色，在本地物理机或者局域网内部向其他独立的<strong>客户端</strong>进程主动推送事件，并处理客户端相关请求，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/rpc_service/7.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/rpc_service/7.png" /></p>
+</section>
+<section id="rpc-rpcservice">
+<h2>RPC服务（RpcService）的应用场景<a class="headerlink" href="#rpc-rpcservice" title="链接到此标题。">¶</a></h2>
+<ul class="simple">
+<li><p>针对运行策略数量较多的用户，只需本地一条行情和交易通道，可以支持多个客户端进程同时交易，且每个客户端中交易策略独立运行，互不影响；</p></li>
+<li><p>针对中小型投资机构用户，可以通过在服务端加载各种交易接口以及RiskManagerApp，实现一个轻量级的资管交易系统，多个交易员共享统一的交易通道，并实现基金产品级别的风险管理。</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">社区版</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../info/index.html">交易功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">安装指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">策略应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">社区版</a><ul>
+  <li><a href="index.html">策略应用</a><ul>
+      <li>Previous: <a href="risk_manager.html" title="上一章">RiskManager - 事前风控管理模块</a></li>
+      <li>Next: <a href="chart_wizard.html" title="下一章">ChartWizard - 实时K线图表模块</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/community/app/rpc_service.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

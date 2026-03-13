@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>vnpy.chart package &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="vnpy.event package" href="vnpy.event.html" />
+    <link rel="prev" title="vnpy.alpha.strategy.strategies package" href="vnpy.alpha.strategy.strategies.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="vnpy-chart-package">
+<h1>vnpy.chart package<a class="headerlink" href="#vnpy-chart-package" title="链接到此标题。">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="链接到此标题。">¶</a></h2>
+</section>
+<section id="module-vnpy.chart.axis">
+<span id="vnpy-chart-axis-module"></span><h2>vnpy.chart.axis module<a class="headerlink" href="#module-vnpy.chart.axis" title="链接到此标题。">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="vnpy.chart.axis.DatetimeAxis">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vnpy.chart.axis.</span></span><span class="sig-name descname"><span class="pre">DatetimeAxis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vnpy.chart.manager.BarManager" title="vnpy.chart.manager.BarManager"><span class="pre">BarManager</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vnpy.chart.axis.DatetimeAxis" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">AxisItem</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vnpy.chart.axis.DatetimeAxis.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;DatetimeAxis&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;AxisItem&quot;:</span> <span class="pre">)</span></span><a class="headerlink" href="#vnpy.chart.axis.DatetimeAxis.staticMetaObject" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.axis.DatetimeAxis.tickStrings">
+<span class="sig-name descname"><span class="pre">tickStrings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spacing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#vnpy.chart.axis.DatetimeAxis.tickStrings" title="链接到此定义。">¶</a></dt>
+<dd><p>Convert original index to datetime string.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-vnpy.chart.base">
+<span id="vnpy-chart-base-module"></span><h2>vnpy.chart.base module<a class="headerlink" href="#module-vnpy.chart.base" title="链接到此标题。">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="vnpy.chart.base.to_int">
+<span class="sig-prename descclassname"><span class="pre">vnpy.chart.base.</span></span><span class="sig-name descname"><span class="pre">to_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#vnpy.chart.base.to_int" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-vnpy.chart.item">
+<span id="vnpy-chart-item-module"></span><h2>vnpy.chart.item module<a class="headerlink" href="#module-vnpy.chart.item" title="链接到此标题。">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="vnpy.chart.item.CandleItem">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vnpy.chart.item.</span></span><span class="sig-name descname"><span class="pre">CandleItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vnpy.chart.manager.BarManager" title="vnpy.chart.manager.BarManager"><span class="pre">BarManager</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vnpy.chart.item.CandleItem" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#vnpy.chart.item.ChartItem" title="vnpy.chart.item.ChartItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChartItem</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.CandleItem.boundingRect">
+<span class="sig-name descname"><span class="pre">boundingRect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QRectF</span></span></span><a class="headerlink" href="#vnpy.chart.item.CandleItem.boundingRect" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.CandleItem.get_info_text">
+<span class="sig-name descname"><span class="pre">get_info_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#vnpy.chart.item.CandleItem.get_info_text" title="链接到此定义。">¶</a></dt>
+<dd><p>Get information text to show by cursor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.CandleItem.get_y_range">
+<span class="sig-name descname"><span class="pre">get_y_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#vnpy.chart.item.CandleItem.get_y_range" title="链接到此定义。">¶</a></dt>
+<dd><p>Get range of y-axis with given x-axis range.</p>
+<p>If min_ix and max_ix not specified, then return range with whole data set.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vnpy.chart.item.CandleItem.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;CandleItem&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;ChartItem&quot;:</span> <span class="pre">)</span></span><a class="headerlink" href="#vnpy.chart.item.CandleItem.staticMetaObject" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vnpy.chart.item.ChartItem">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vnpy.chart.item.</span></span><span class="sig-name descname"><span class="pre">ChartItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vnpy.chart.manager.BarManager" title="vnpy.chart.manager.BarManager"><span class="pre">BarManager</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vnpy.chart.item.ChartItem" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">GraphicsObject</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.ChartItem.boundingRect">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">boundingRect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QRectF</span></span></span><a class="headerlink" href="#vnpy.chart.item.ChartItem.boundingRect" title="链接到此定义。">¶</a></dt>
+<dd><p>Get bounding rectangles for item.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.ChartItem.clear_all">
+<span class="sig-name descname"><span class="pre">clear_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.item.ChartItem.clear_all" title="链接到此定义。">¶</a></dt>
+<dd><p>Clear all data in the item.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.ChartItem.get_info_text">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_info_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#vnpy.chart.item.ChartItem.get_info_text" title="链接到此定义。">¶</a></dt>
+<dd><p>Get information text to show by cursor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.ChartItem.get_y_range">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_y_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#vnpy.chart.item.ChartItem.get_y_range" title="链接到此定义。">¶</a></dt>
+<dd><p>Get range of y-axis with given x-axis range.</p>
+<p>If min_ix and max_ix not specified, then return range with whole data set.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.ChartItem.paint">
+<span class="sig-name descname"><span class="pre">paint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">painter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QPainter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QStyleOptionGraphicsItem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QWidget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.item.ChartItem.paint" title="链接到此定义。">¶</a></dt>
+<dd><p>Reimplement the paint method of parent class.</p>
+<p>This function is called by external QGraphicsView.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vnpy.chart.item.ChartItem.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;ChartItem&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;GraphicsObject&quot;:</span> <span class="pre">)</span></span><a class="headerlink" href="#vnpy.chart.item.ChartItem.staticMetaObject" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.ChartItem.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.item.ChartItem.update" title="链接到此定义。">¶</a></dt>
+<dd><p>Refresh the item.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.ChartItem.update_bar">
+<span class="sig-name descname"><span class="pre">update_bar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vnpy.trader.html#vnpy.trader.object.BarData" title="vnpy.trader.object.BarData"><span class="pre">BarData</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.item.ChartItem.update_bar" title="链接到此定义。">¶</a></dt>
+<dd><p>Update single bar data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.ChartItem.update_history">
+<span class="sig-name descname"><span class="pre">update_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">history</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="vnpy.trader.html#vnpy.trader.object.BarData" title="vnpy.trader.object.BarData"><span class="pre">BarData</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.item.ChartItem.update_history" title="链接到此定义。">¶</a></dt>
+<dd><p>Update a list of bar data.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vnpy.chart.item.VolumeItem">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vnpy.chart.item.</span></span><span class="sig-name descname"><span class="pre">VolumeItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vnpy.chart.manager.BarManager" title="vnpy.chart.manager.BarManager"><span class="pre">BarManager</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vnpy.chart.item.VolumeItem" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#vnpy.chart.item.ChartItem" title="vnpy.chart.item.ChartItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChartItem</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.VolumeItem.boundingRect">
+<span class="sig-name descname"><span class="pre">boundingRect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QRectF</span></span></span><a class="headerlink" href="#vnpy.chart.item.VolumeItem.boundingRect" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.VolumeItem.get_info_text">
+<span class="sig-name descname"><span class="pre">get_info_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#vnpy.chart.item.VolumeItem.get_info_text" title="链接到此定义。">¶</a></dt>
+<dd><p>Get information text to show by cursor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.item.VolumeItem.get_y_range">
+<span class="sig-name descname"><span class="pre">get_y_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#vnpy.chart.item.VolumeItem.get_y_range" title="链接到此定义。">¶</a></dt>
+<dd><p>Get range of y-axis with given x-axis range.</p>
+<p>If min_ix and max_ix not specified, then return range with whole data set.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vnpy.chart.item.VolumeItem.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;VolumeItem&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;ChartItem&quot;:</span> <span class="pre">)</span></span><a class="headerlink" href="#vnpy.chart.item.VolumeItem.staticMetaObject" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-vnpy.chart.manager">
+<span id="vnpy-chart-manager-module"></span><h2>vnpy.chart.manager module<a class="headerlink" href="#module-vnpy.chart.manager" title="链接到此标题。">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="vnpy.chart.manager.BarManager">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vnpy.chart.manager.</span></span><span class="sig-name descname"><span class="pre">BarManager</span></span><a class="headerlink" href="#vnpy.chart.manager.BarManager" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.manager.BarManager.clear_all">
+<span class="sig-name descname"><span class="pre">clear_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.manager.BarManager.clear_all" title="链接到此定义。">¶</a></dt>
+<dd><p>Clear all data in manager.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.manager.BarManager.get_all_bars">
+<span class="sig-name descname"><span class="pre">get_all_bars</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="vnpy.trader.html#vnpy.trader.object.BarData" title="vnpy.trader.object.BarData"><span class="pre">BarData</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#vnpy.chart.manager.BarManager.get_all_bars" title="链接到此定义。">¶</a></dt>
+<dd><p>Get all bar data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.manager.BarManager.get_bar">
+<span class="sig-name descname"><span class="pre">get_bar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="vnpy.trader.html#vnpy.trader.object.BarData" title="vnpy.trader.object.BarData"><span class="pre">BarData</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.manager.BarManager.get_bar" title="链接到此定义。">¶</a></dt>
+<dd><p>Get bar data with index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.manager.BarManager.get_count">
+<span class="sig-name descname"><span class="pre">get_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#vnpy.chart.manager.BarManager.get_count" title="链接到此定义。">¶</a></dt>
+<dd><p>Get total number of bars.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.manager.BarManager.get_datetime">
+<span class="sig-name descname"><span class="pre">get_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.manager.BarManager.get_datetime" title="链接到此定义。">¶</a></dt>
+<dd><p>Get datetime with index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.manager.BarManager.get_index">
+<span class="sig-name descname"><span class="pre">get_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.manager.BarManager.get_index" title="链接到此定义。">¶</a></dt>
+<dd><p>Get index with datetime.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.manager.BarManager.get_price_range">
+<span class="sig-name descname"><span class="pre">get_price_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#vnpy.chart.manager.BarManager.get_price_range" title="链接到此定义。">¶</a></dt>
+<dd><p>Get price range to show within given index range.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.manager.BarManager.get_volume_range">
+<span class="sig-name descname"><span class="pre">get_volume_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#vnpy.chart.manager.BarManager.get_volume_range" title="链接到此定义。">¶</a></dt>
+<dd><p>Get volume range to show within given index range.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.manager.BarManager.update_bar">
+<span class="sig-name descname"><span class="pre">update_bar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vnpy.trader.html#vnpy.trader.object.BarData" title="vnpy.trader.object.BarData"><span class="pre">BarData</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.manager.BarManager.update_bar" title="链接到此定义。">¶</a></dt>
+<dd><p>Update one single bar data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.manager.BarManager.update_history">
+<span class="sig-name descname"><span class="pre">update_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">history</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="vnpy.trader.html#vnpy.trader.object.BarData" title="vnpy.trader.object.BarData"><span class="pre">BarData</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.manager.BarManager.update_history" title="链接到此定义。">¶</a></dt>
+<dd><p>Update a list of bar data.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-vnpy.chart.widget">
+<span id="vnpy-chart-widget-module"></span><h2>vnpy.chart.widget module<a class="headerlink" href="#module-vnpy.chart.widget" title="链接到此标题。">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartCursor">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vnpy.chart.widget.</span></span><span class="sig-name descname"><span class="pre">ChartCursor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vnpy.chart.widget.ChartWidget" title="vnpy.chart.widget.ChartWidget"><span class="pre">ChartWidget</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vnpy.chart.manager.BarManager" title="vnpy.chart.manager.BarManager"><span class="pre">BarManager</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">plots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">GraphicsObject</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_plot_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#vnpy.chart.item.ChartItem" title="vnpy.chart.item.ChartItem"><span class="pre">ChartItem</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">GraphicsObject</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vnpy.chart.widget.ChartCursor" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">QObject</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartCursor.clear_all">
+<span class="sig-name descname"><span class="pre">clear_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartCursor.clear_all" title="链接到此定义。">¶</a></dt>
+<dd><p>Clear all data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartCursor.move_left">
+<span class="sig-name descname"><span class="pre">move_left</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartCursor.move_left" title="链接到此定义。">¶</a></dt>
+<dd><p>Move cursor index to left by 1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartCursor.move_right">
+<span class="sig-name descname"><span class="pre">move_right</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartCursor.move_right" title="链接到此定义。">¶</a></dt>
+<dd><p>Move cursor index to right by 1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartCursor.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;ChartCursor&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QObject&quot;:</span> <span class="pre">)</span></span><a class="headerlink" href="#vnpy.chart.widget.ChartCursor.staticMetaObject" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartCursor.update_info">
+<span class="sig-name descname"><span class="pre">update_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartCursor.update_info" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vnpy.chart.widget.</span></span><span class="sig-name descname"><span class="pre">ChartWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QWidget</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">PlotWidget</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.MIN_BAR_COUNT">
+<span class="sig-name descname"><span class="pre">MIN_BAR_COUNT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100</span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.MIN_BAR_COUNT" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.add_cursor">
+<span class="sig-name descname"><span class="pre">add_cursor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.add_cursor" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.add_item">
+<span class="sig-name descname"><span class="pre">add_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_class</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vnpy.trader.html#vnpy.trader.object.OrderData.type" title="vnpy.trader.object.OrderData.type"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#vnpy.chart.item.ChartItem" title="vnpy.chart.item.ChartItem"><span class="pre">ChartItem</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.add_item" title="链接到此定义。">¶</a></dt>
+<dd><p>Add chart item.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.add_plot">
+<span class="sig-name descname"><span class="pre">add_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">80</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum_height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hide_x_axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.add_plot" title="链接到此定义。">¶</a></dt>
+<dd><p>Add plot area.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.clear_all">
+<span class="sig-name descname"><span class="pre">clear_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.clear_all" title="链接到此定义。">¶</a></dt>
+<dd><p>Clear all data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.get_all_plots">
+<span class="sig-name descname"><span class="pre">get_all_plots</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">PlotItem</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.get_all_plots" title="链接到此定义。">¶</a></dt>
+<dd><p>Get all plot objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.get_plot">
+<span class="sig-name descname"><span class="pre">get_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PlotItem</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.get_plot" title="链接到此定义。">¶</a></dt>
+<dd><p>Get specific plot with its name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.keyPressEvent">
+<span class="sig-name descname"><span class="pre">keyPressEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QKeyEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.keyPressEvent" title="链接到此定义。">¶</a></dt>
+<dd><p>Reimplement this method of parent to move chart horizontally and zoom in/out.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.move_to_right">
+<span class="sig-name descname"><span class="pre">move_to_right</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.move_to_right" title="链接到此定义。">¶</a></dt>
+<dd><p>Move chart to the most right.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.paintEvent">
+<span class="sig-name descname"><span class="pre">paintEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QPaintEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.paintEvent" title="链接到此定义。">¶</a></dt>
+<dd><p>Reimplement this method of parent to update current max_ix value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;ChartWidget&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;PlotWidget&quot;:</span> <span class="pre">)</span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.staticMetaObject" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.update_bar">
+<span class="sig-name descname"><span class="pre">update_bar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vnpy.trader.html#vnpy.trader.object.BarData" title="vnpy.trader.object.BarData"><span class="pre">BarData</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.update_bar" title="链接到此定义。">¶</a></dt>
+<dd><p>Update single bar data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.update_history">
+<span class="sig-name descname"><span class="pre">update_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">history</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="vnpy.trader.html#vnpy.trader.object.BarData" title="vnpy.trader.object.BarData"><span class="pre">BarData</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.update_history" title="链接到此定义。">¶</a></dt>
+<dd><p>Update a list of bar data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.widget.ChartWidget.wheelEvent">
+<span class="sig-name descname"><span class="pre">wheelEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QWheelEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.widget.ChartWidget.wheelEvent" title="链接到此定义。">¶</a></dt>
+<dd><p>Reimplement this method of parent to zoom in/out.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-vnpy.chart">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-vnpy.chart" title="链接到此标题。">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="vnpy.chart.CandleItem">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vnpy.chart.</span></span><span class="sig-name descname"><span class="pre">CandleItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vnpy.chart.manager.BarManager" title="vnpy.chart.manager.BarManager"><span class="pre">BarManager</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vnpy.chart.CandleItem" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#vnpy.chart.item.ChartItem" title="vnpy.chart.item.ChartItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChartItem</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.CandleItem.boundingRect">
+<span class="sig-name descname"><span class="pre">boundingRect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QRectF</span></span></span><a class="headerlink" href="#vnpy.chart.CandleItem.boundingRect" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.CandleItem.get_info_text">
+<span class="sig-name descname"><span class="pre">get_info_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#vnpy.chart.CandleItem.get_info_text" title="链接到此定义。">¶</a></dt>
+<dd><p>Get information text to show by cursor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.CandleItem.get_y_range">
+<span class="sig-name descname"><span class="pre">get_y_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#vnpy.chart.CandleItem.get_y_range" title="链接到此定义。">¶</a></dt>
+<dd><p>Get range of y-axis with given x-axis range.</p>
+<p>If min_ix and max_ix not specified, then return range with whole data set.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vnpy.chart.CandleItem.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;CandleItem&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;ChartItem&quot;:</span> <span class="pre">)</span></span><a class="headerlink" href="#vnpy.chart.CandleItem.staticMetaObject" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vnpy.chart.</span></span><span class="sig-name descname"><span class="pre">ChartWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QWidget</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vnpy.chart.ChartWidget" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">PlotWidget</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.MIN_BAR_COUNT">
+<span class="sig-name descname"><span class="pre">MIN_BAR_COUNT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100</span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.MIN_BAR_COUNT" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.add_cursor">
+<span class="sig-name descname"><span class="pre">add_cursor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.add_cursor" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.add_item">
+<span class="sig-name descname"><span class="pre">add_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_class</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vnpy.trader.html#vnpy.trader.object.OrderData.type" title="vnpy.trader.object.OrderData.type"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#vnpy.chart.item.ChartItem" title="vnpy.chart.item.ChartItem"><span class="pre">ChartItem</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.add_item" title="链接到此定义。">¶</a></dt>
+<dd><p>Add chart item.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.add_plot">
+<span class="sig-name descname"><span class="pre">add_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">80</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum_height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hide_x_axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.add_plot" title="链接到此定义。">¶</a></dt>
+<dd><p>Add plot area.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.clear_all">
+<span class="sig-name descname"><span class="pre">clear_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.clear_all" title="链接到此定义。">¶</a></dt>
+<dd><p>Clear all data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.get_all_plots">
+<span class="sig-name descname"><span class="pre">get_all_plots</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">PlotItem</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.get_all_plots" title="链接到此定义。">¶</a></dt>
+<dd><p>Get all plot objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.get_plot">
+<span class="sig-name descname"><span class="pre">get_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PlotItem</span></span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.get_plot" title="链接到此定义。">¶</a></dt>
+<dd><p>Get specific plot with its name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.keyPressEvent">
+<span class="sig-name descname"><span class="pre">keyPressEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QKeyEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.keyPressEvent" title="链接到此定义。">¶</a></dt>
+<dd><p>Reimplement this method of parent to move chart horizontally and zoom in/out.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.move_to_right">
+<span class="sig-name descname"><span class="pre">move_to_right</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.move_to_right" title="链接到此定义。">¶</a></dt>
+<dd><p>Move chart to the most right.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.paintEvent">
+<span class="sig-name descname"><span class="pre">paintEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QPaintEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.paintEvent" title="链接到此定义。">¶</a></dt>
+<dd><p>Reimplement this method of parent to update current max_ix value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;ChartWidget&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;PlotWidget&quot;:</span> <span class="pre">)</span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.staticMetaObject" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.update_bar">
+<span class="sig-name descname"><span class="pre">update_bar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vnpy.trader.html#vnpy.trader.object.BarData" title="vnpy.trader.object.BarData"><span class="pre">BarData</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.update_bar" title="链接到此定义。">¶</a></dt>
+<dd><p>Update single bar data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.update_history">
+<span class="sig-name descname"><span class="pre">update_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">history</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="vnpy.trader.html#vnpy.trader.object.BarData" title="vnpy.trader.object.BarData"><span class="pre">BarData</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.update_history" title="链接到此定义。">¶</a></dt>
+<dd><p>Update a list of bar data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.ChartWidget.wheelEvent">
+<span class="sig-name descname"><span class="pre">wheelEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QWheelEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#vnpy.chart.ChartWidget.wheelEvent" title="链接到此定义。">¶</a></dt>
+<dd><p>Reimplement this method of parent to zoom in/out.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vnpy.chart.VolumeItem">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vnpy.chart.</span></span><span class="sig-name descname"><span class="pre">VolumeItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vnpy.chart.manager.BarManager" title="vnpy.chart.manager.BarManager"><span class="pre">BarManager</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vnpy.chart.VolumeItem" title="链接到此定义。">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#vnpy.chart.item.ChartItem" title="vnpy.chart.item.ChartItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChartItem</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.VolumeItem.boundingRect">
+<span class="sig-name descname"><span class="pre">boundingRect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QRectF</span></span></span><a class="headerlink" href="#vnpy.chart.VolumeItem.boundingRect" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.VolumeItem.get_info_text">
+<span class="sig-name descname"><span class="pre">get_info_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#vnpy.chart.VolumeItem.get_info_text" title="链接到此定义。">¶</a></dt>
+<dd><p>Get information text to show by cursor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vnpy.chart.VolumeItem.get_y_range">
+<span class="sig-name descname"><span class="pre">get_y_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#vnpy.chart.VolumeItem.get_y_range" title="链接到此定义。">¶</a></dt>
+<dd><p>Get range of y-axis with given x-axis range.</p>
+<p>If min_ix and max_ix not specified, then return range with whole data set.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vnpy.chart.VolumeItem.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;VolumeItem&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;ChartItem&quot;:</span> <span class="pre">)</span></span><a class="headerlink" href="#vnpy.chart.VolumeItem.staticMetaObject" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">vnpy</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="vnpy.html">vnpy package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">社区版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">vnpy</a><ul>
+  <li><a href="vnpy.html">vnpy package</a><ul>
+      <li>Previous: <a href="vnpy.alpha.strategy.strategies.html" title="上一章">vnpy.alpha.strategy.strategies package</a></li>
+      <li>Next: <a href="vnpy.event.html" title="下一章">vnpy.event package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/vnpy/vnpy.chart.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

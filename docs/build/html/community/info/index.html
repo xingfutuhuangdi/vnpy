@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>交易功能 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="功能介绍" href="introduction.html" />
+    <link rel="prev" title="社区版" href="../index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>交易功能<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Elite版</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">功能介绍</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#id2">目标用户</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#id3">应用场景</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#id4">支持的接口</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#id5">支持的应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#id6">通用类组件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="veighna_station.html">VeighNa Station</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="veighna_station.html#id1">启动程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="veighna_station.html#id4">用户登录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="veighna_station.html#id5">界面窗口</a></li>
+<li class="toctree-l2"><a class="reference internal" href="veighna_station.html#id11">功能使用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="veighna_trader.html">VeighNa Trader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="veighna_trader.html#id1">启动程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="veighna_trader.html#id4">连接接口</a></li>
+<li class="toctree-l2"><a class="reference internal" href="veighna_trader.html#id5">合约查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="veighna_trader.html#id6">订阅行情</a></li>
+<li class="toctree-l2"><a class="reference internal" href="veighna_trader.html#id7">委托交易</a></li>
+<li class="toctree-l2"><a class="reference internal" href="veighna_trader.html#id8">数据监控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="veighna_trader.html#id16">应用模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="veighna_trader.html#id17">全局配置</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gateway.html">交易接口</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gateway.html#id2">加载启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gateway.html#id4">连接接口</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gateway.html#id6">接口分类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gateway.html#id7">接口详解</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">数据库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database.html#sql">SQL类数据库简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#id5">非SQL类数据库简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#id9">数据库配置（以MySQL为例）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#id10">脚本使用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="datafeed.html">数据服务</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datafeed.html#id2">迅投研</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafeed.html#rqdata">RQData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafeed.html#udata">UData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafeed.html#tushare">TuShare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafeed.html#tqsdk">TQSDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafeed.html#wind">Wind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafeed.html#ifind">iFinD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafeed.html#tinysoft">Tinysoft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datafeed.html#id3">脚本使用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pycharm.html">PyCharm开发指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pycharm.html#id1">PyCharm安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pycharm.html#veighna">VeighNa开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pycharm.html#vs-code">对比VS Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contribution.html">贡献代码</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contribution.html#pr">创建PR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contribution.html#id2">代码风格</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="i18n.html">国际化（i18n）</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#id1">标记字符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#pot">创建pot文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#po">创建po文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#mo">生成mo文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#id2">打包</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#id3">使用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="i18n.html#internationalization-i18n">Internationalization (i18n)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#prerequisites">prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#mark-messages">mark messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#template-files">template files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#individual-language-files">individual language files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#binary-files">binary files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#install">install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#execution">execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#distribution">distribution</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">社区版</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">交易功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">安装指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../app/index.html">策略应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">社区版</a><ul>
+      <li>Previous: <a href="../index.html" title="上一章">社区版</a></li>
+      <li>Next: <a href="introduction.html" title="下一章">功能介绍</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/community/info/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

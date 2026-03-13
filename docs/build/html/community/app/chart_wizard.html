@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ChartWizard - 实时K线图表模块 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="PortfolioManager - 投资组合管理模块" href="portfolio_manager.html" />
+    <link rel="prev" title="RpcService - RPC服务器模块" href="rpc_service.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="chartwizard-k">
+<h1>ChartWizard - 实时K线图表模块<a class="headerlink" href="#chartwizard-k" title="链接到此标题。">¶</a></h1>
+<section id="id1">
+<h2>功能简介<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h2>
+<p>ChartWizard是用于<strong>实时K线图表展示</strong>的功能模块，用户可以通过其UI界面查看实时和历史K线行情，目前只支持显示1分钟级别的K线数据，实时K线（最新的一根K线）为Tick级刷新。</p>
+</section>
+<section id="id2">
+<h2>加载启动<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<section id="veighna-station">
+<h3>VeighNa Station加载<a class="headerlink" href="#veighna-station" title="链接到此标题。">¶</a></h3>
+<p>启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【应用模块】栏勾选【ChartWizard】。</p>
+</section>
+<section id="id3">
+<h3>脚本加载<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h3>
+<p>在启动脚本中添加如下代码：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 写在顶部</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">vnpy_chartwizard</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChartWizardApp</span>
+
+<span class="c1"># 写在创建main_engine对象后</span>
+<span class="n">main_engine</span><span class="o">.</span><span class="n">add_app</span><span class="p">(</span><span class="n">ChartWizardApp</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>启动模块<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h2>
+<p>在启动模块之前，请先连接交易接口（连接方法详见基本使用篇的连接接口部分）。看到VeighNa Trader主界面【日志】栏输出“合约信息查询成功”之后再启动模块，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png" /></p>
+<p>请注意，IB接口因为登录时无法自动获取所有的合约信息，只有在用户手动订阅行情时才能获取。因此需要在主界面上先行手动订阅合约行情，再启动模块。</p>
+<p>由于VeighNa本身并不提供任何数据服务，对于K线图表绘制过程中用到的历史数据，国内期货历史数据由数据服务提供，用户需要准备和配置数据服务账号（配置方法详见基本使用篇的全局配置部分）。</p>
+<p>成功连接交易接口后，在菜单栏中点击【功能】-&gt; 【K线图表】，或者点击左侧按钮栏的图标：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/1.png" /></p>
+<p>即可进入实时K线图表模块的UI界面，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/2.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/2.png" /></p>
+</section>
+<section id="id5">
+<h2>新建图表<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h2>
+<p>打开图表窗口后，在【本地代码】编辑框中输入合约代码（注意本地代码由代码前缀和交易所后缀两部分组成，如rb2112.SHFE）。</p>
+<p>点击【新建图表】的按钮，即可创建对应合约的K线图表，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/3.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/3.png" /></p>
+<p>用户可以新建多个合约的K线图表，通过切换窗口来实现快速切换：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/4.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/4.png" /></p>
+</section>
+<section id="id6">
+<h2>查看图表<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h2>
+<p>每个合约的图表分为上下两块子图区域：</p>
+<ul class="simple">
+<li><p>上面的子图为行情K线；</p></li>
+<li><p>下面的子图为成交量数据。</p></li>
+</ul>
+<p>图表上的十字光标可用于定位和显示特定时间点的具体数据，在X轴和Y轴上均会对应数据点的标签，同时在左上角也会显示此根K线的OHLCV等信息。</p>
+<p>其他快捷操作：</p>
+<ul class="simple">
+<li><p>可以通过鼠标左键的拖拽，左右平移K线图显示的时间范围；</p></li>
+<li><p>可以通过鼠标滚轮的滚动，放大和缩小K线图显示的时间范围。</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">社区版</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../info/index.html">交易功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">安装指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">策略应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">社区版</a><ul>
+  <li><a href="index.html">策略应用</a><ul>
+      <li>Previous: <a href="rpc_service.html" title="上一章">RpcService - RPC服务器模块</a></li>
+      <li>Next: <a href="portfolio_manager.html" title="下一章">PortfolioManager - 投资组合管理模块</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/community/app/chart_wizard.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

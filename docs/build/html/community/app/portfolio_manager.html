@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>PortfolioManager - 投资组合管理模块 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="ExcelRtd - EXCEL RTD模块" href="excel_rtd.html" />
+    <link rel="prev" title="ChartWizard - 实时K线图表模块" href="chart_wizard.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="portfoliomanager">
+<h1>PortfolioManager - 投资组合管理模块<a class="headerlink" href="#portfoliomanager" title="链接到此标题。">¶</a></h1>
+<section id="id1">
+<h2>功能简介<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h2>
+<p>PortfolioManager是用于<strong>投资组合管理</strong>的功能模块，用户可以在盘中通过其UI界面对交易策略进行实时的业绩跟踪和盈亏分析。</p>
+</section>
+<section id="id2">
+<h2>加载启动<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<section id="veighna-station">
+<h3>VeighNa Station加载<a class="headerlink" href="#veighna-station" title="链接到此标题。">¶</a></h3>
+<p>启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【应用模块】栏勾选【PortfolioManager】。</p>
+</section>
+<section id="id3">
+<h3>脚本加载<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h3>
+<p>在启动脚本中添加如下代码：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 写在顶部</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">vnpy_portfoliomanager</span><span class="w"> </span><span class="kn">import</span> <span class="n">PortfolioManagerApp</span>
+
+<span class="c1"># 写在创建main_engine对象后</span>
+<span class="n">main_engine</span><span class="o">.</span><span class="n">add_app</span><span class="p">(</span><span class="n">PortfolioManagerApp</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>启动模块<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h2>
+<p>在菜单栏中点击【功能】-&gt; 【投资组合】，或者点击左侧按钮栏的图标：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/portfolio_manager/1.jpg" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/portfolio_manager/1.jpg" /></p>
+<p>即可进入投资组合管理模块的UI界面，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/portfolio_manager/6.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/portfolio_manager/6.png" /></p>
+</section>
+<section id="id5">
+<h2>组合信息表<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h2>
+<p>界面整体可以分为左右两部分，左边显示的是当前已有投资组合的信息表，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/portfolio_manager/7.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/portfolio_manager/7.png" /></p>
+<p>组合信息表每列的含义如下：</p>
+<ul class="simple">
+<li><p>组合名称：委托来源标识（reference），所有从VeighNa发出的委托请求都可以直接通过该标识来区分其交易来源，如手动交易、算法执行、量化策略等，每个交易来源可以视作一个独立的投资组合。</p>
+<ul>
+<li><p>手动交易：ManualTrading</p></li>
+<li><p>CTA策略：CtaStrategy_策略名</p></li>
+<li><p>价差交易：SpreadTrading_价差名</p></li>
+<li><p>期权交易：OptionMaster_ElectronicEye/DeltaHedging</p></li>
+<li><p>算法交易：AlgoTrading_算法编号</p></li>
+<li><p>脚本策略：ScriptTrader</p></li>
+<li><p>组合策略：PortfolioStrategy_策略名</p></li>
+</ul>
+</li>
+<li><p>本地代码：带交易所后缀的合约代码（vt_symbol）</p></li>
+<li><p>开盘仓位：昨日收盘时（今日开盘），投资组合内该合约的持仓</p></li>
+<li><p>当前仓位：开盘仓位加上今日成交数量（多头成交 - 空头成交）的结果</p></li>
+<li><p>交易盈亏：今日所有成交，以成交价格映射到当前最新价的盈亏</p></li>
+<li><p>持仓盈亏：组合开盘仓位，以昨收盘价映射到当前最新价的盈亏</p></li>
+<li><p>总盈亏：交易盈亏和持仓盈亏的和</p></li>
+<li><p>多头成交：投资组合内该合约今日买开和买平成交数量</p></li>
+<li><p>空头成交：投资组合内该合约今日卖开和卖平成交数量</p></li>
+</ul>
+<p>其中，交易盈亏（TradingPnl）和持仓盈亏（HoldingPnl）的计算方式采用的是期货交易所每日结算时所用的逐日盯市（Marking to Market）算法，计算过程如下所示：</p>
+<ul class="simple">
+<li><p>交易盈亏 = 持仓量 * （当日收盘价-昨日收盘价）* 合约规模</p></li>
+<li><p>持仓盈亏 = 持仓变化量 * （当日收盘价 - 开仓成交价）* 合约规模</p></li>
+<li><p>总盈亏 = 交易盈亏 + 持仓盈亏</p></li>
+<li><p>净盈亏 = 总盈亏 - 总手续费 - 总滑点</p></li>
+</ul>
+<p>用户可以通过展开和折叠投资组合，调整列宽来查看信息：</p>
+<ul class="simple">
+<li><p>点击每个投资组合左侧的箭头可以展开和折叠各投资组合的信息；</p></li>
+<li><p>点击顶部的【全部展开】和【全部折叠】按钮对所有投资组合进行批量操作；</p></li>
+<li><p>点击【调整列宽】按钮可以自动调整表格每列的宽度。</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>成交记录表<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h2>
+<p>界面右侧部分显示的是所有成交记录，点击右上角的下拉框可以根据投资组合进行筛选，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/portfolio_manager/8.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/portfolio_manager/8.png" /></p>
+</section>
+<section id="id7">
+<h2>刷新频率<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h2>
+<p>投资组合的盈亏基于定时逻辑自动计算，计算频率可以通过顶部中间的选项框进行调整，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/portfolio_manager/5.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/portfolio_manager/5.png" /></p>
+<p>请注意，所有组合的持仓数据会在关闭VeighNa Trader时写入缓存文件中，所以不要直接杀进程退出，会丢失数据。</p>
+<p>在隔日加载时，程序会自动将昨天的总仓位结算到今天的昨仓数据字段中，该逻辑对于24小时交易的市场（外盘期货）不一定合适，后续考虑加入每日定时结算或者手动结算功能。</p>
+<p>如果发现有仓位记录错误，或者策略已经移除的情况，可以手动修改缓存文件，再重新启动VeighNa Trader即可。</p>
+<p>Windows系统上缓存文件的默认路径位于：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">Administrator</span>\<span class="o">.</span><span class="n">vntrader</span>\<span class="n">portfolio_manager_data</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>其中Administrator是当前Windows系统的用户名。</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">社区版</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../info/index.html">交易功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">安装指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">策略应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">社区版</a><ul>
+  <li><a href="index.html">策略应用</a><ul>
+      <li>Previous: <a href="chart_wizard.html" title="上一章">ChartWizard - 实时K线图表模块</a></li>
+      <li>Next: <a href="excel_rtd.html" title="下一章">ExcelRtd - EXCEL RTD模块</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/community/app/portfolio_manager.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

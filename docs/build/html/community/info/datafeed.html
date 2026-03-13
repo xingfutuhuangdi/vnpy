@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>数据服务 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="PyCharm开发指南" href="pycharm.html" />
+    <link rel="prev" title="数据库" href="database.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>数据服务<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h1>
+<p>对于数据服务，VeighNa提供了标准化的接口BaseDatafeed（位于vnpy.trader.datafeed中），实现了更加灵活的数据服务支持。在全局配置中，和数据服务相关的字段都以datafeed作为前缀。</p>
+<p>具体字段含义如下：</p>
+<ul class="simple">
+<li><p>datafeed.name：数据服务接口的名称，必须为全称的小写英文字母；</p></li>
+<li><p>datafeed.username：数据服务的用户名；</p></li>
+<li><p>datafeed.password：数据服务的密码。</p></li>
+</ul>
+<p>以上字段对于所有数据服务都是必填的，如果是token方式授权请填写在datafeed.password字段中。目前VeighNa Trader支持以下七种数据服务，<strong>具体每个数据服务的细节可在对应的项目地址中找到</strong>。</p>
+<section id="id2">
+<h2>迅投研<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<p>迅投研是由睿智融科公司推出的专业数据服务，对于大部分个人投资者来说应该都是性价比比较高的选择：</p>
+<ul class="simple">
+<li><p>项目地址：<a class="reference external" href="https://github.com/vnpy/vnpy_xt">vnpy_xt</a></p></li>
+<li><p>数据分类：股票、期货、期权、基金、合约信息、财务信息</p></li>
+<li><p>数据周期：日线、小时线、分钟线、TICK（实时更新）</p></li>
+<li><p>注册申请：<a class="reference external" href="https://xuntou.net/#/signup?utm_source=vnpy">迅投研</a></p></li>
+</ul>
+</section>
+<section id="rqdata">
+<h2>RQData<a class="headerlink" href="#rqdata" title="链接到此标题。">¶</a></h2>
+<p>米筐RQData是由米筐科技公司推出的云端数据服务，提供了广泛的国内金融市场品种数据支持：</p>
+<ul class="simple">
+<li><p>项目地址：<a class="reference external" href="https://github.com/vnpy/vnpy_rqdata">vnpy_rqdata</a></p></li>
+<li><p>数据分类：股票、期货、期权、基金和黄金TD</p></li>
+<li><p>数据周期：日线、小时线、分钟线、TICK（实时更新）</p></li>
+<li><p>注册申请：<a class="reference external" href="https://www.ricequant.com/welcome/purchase?utm_source=vnpy">RICEQUANT</a></p></li>
+</ul>
+<p><strong>请注意，配置信息里的username和password不是米筐官网登录用的账号和密码。</strong></p>
+</section>
+<section id="udata">
+<h2>UData<a class="headerlink" href="#udata" title="链接到此标题。">¶</a></h2>
+<p>恒有数UData是由恒生电子推出的云端数据服务，提供不限次、不限量的多种金融数据获取：</p>
+<ul class="simple">
+<li><p>项目地址：<a class="reference external" href="https://github.com/vnpy/vnpy_udata">vnpy_udata</a></p></li>
+<li><p>数据分类：股票、期货</p></li>
+<li><p>数据周期：分钟线（盘后更新）</p></li>
+<li><p>注册申请：<a class="reference external" href="https://udata.hs.net/home">恒有数UData</a></p></li>
+</ul>
+</section>
+<section id="tushare">
+<h2>TuShare<a class="headerlink" href="#tushare" title="链接到此标题。">¶</a></h2>
+<p>TuShare是国内知名的开源Python金融数据接口项目，由大神Jimmy团队长期开发维护，除了行情数据外还提供许多另类数据：</p>
+<ul class="simple">
+<li><p>项目地址：<a class="reference external" href="https://www.github.com/vnpy/vnpy_tushare">vnpy_tushare</a></p></li>
+<li><p>数据分类：股票、期货</p></li>
+<li><p>数据周期：日线、分钟线（盘后更新）</p></li>
+<li><p>注册申请：<a class="reference external" href="https://tushare.pro/">Tushare大数据社区</a></p></li>
+</ul>
+</section>
+<section id="tqsdk">
+<h2>TQSDK<a class="headerlink" href="#tqsdk" title="链接到此标题。">¶</a></h2>
+<p>天勤TQSDK是由信易科技推出的Python程序化交易解决方案，提供当前可交易合约上市以来的历史数据获取：</p>
+<ul class="simple">
+<li><p>项目地址：<a class="reference external" href="https://github.com/vnpy/vnpy_tqsdk">vnpy_tqsdk</a></p></li>
+<li><p>数据分类：期货</p></li>
+<li><p>数据周期：分钟线（实时更新）</p></li>
+<li><p>注册申请：<a class="reference external" href="https://www.shinnytech.com/tianqin">天勤量化-信易科技(shinnytech.com)</a></p></li>
+</ul>
+</section>
+<section id="wind">
+<h2>Wind<a class="headerlink" href="#wind" title="链接到此标题。">¶</a></h2>
+<p>万得Wind对于在国内金融机构工作的从业者来说，已经是工作中的标准配置，不管是股票、债券还是商品市场的数据，Wind可以说是应有尽有：</p>
+<ul class="simple">
+<li><p>项目地址：<a class="reference external" href="https://github.com/vnpy/vnpy_wind">vnpy_wind</a></p></li>
+<li><p>数据分类：期货</p></li>
+<li><p>数据周期：分钟线（实时更新）</p></li>
+<li><p>注册申请：<a class="reference external" href="https://www.wind.com.cn/newsite/wft.html">Wind金融终端</a></p></li>
+</ul>
+</section>
+<section id="ifind">
+<h2>iFinD<a class="headerlink" href="#ifind" title="链接到此标题。">¶</a></h2>
+<p>同花顺iFinD是同花顺公司推出的面向专业机构用户的金融数据终端，且在过去几年中的市场占有率快速上升：</p>
+<ul class="simple">
+<li><p>项目地址：<a class="reference external" href="https://github.com/vnpy/vnpy_ifind">vnpy_ifind</a></p></li>
+<li><p>数据分类：期货</p></li>
+<li><p>数据周期：分钟线（实时更新）</p></li>
+<li><p>注册申请：<a class="reference external" href="http://www.51ifind.com/">iFinD金融数据终端</a></p></li>
+</ul>
+</section>
+<section id="tinysoft">
+<h2>Tinysoft<a class="headerlink" href="#tinysoft" title="链接到此标题。">¶</a></h2>
+<p>作为国内老牌金融数据公司的天软，其核心产品【天软.NET金融分析平台】（简称TinySoft），在券商研究所和自营领域积累了大量用户。翻看券商的金融工程研报时，经常会发现图表的备注信息中写有“以上数据来自天软”的数据来源说明：</p>
+<ul class="simple">
+<li><p>项目地址：<a class="reference external" href="https://github.com/vnpy/vnpy_tinysoft">vnpy_tinysoft</a></p></li>
+<li><p>数据分类：期货</p></li>
+<li><p>数据周期：分钟线（实时更新）</p></li>
+<li><p>注册申请：<a class="reference external" href="http://www.tinysoft.com.cn/TSDN/HomePage.tsl">天软.NET金融分析平台</a></p></li>
+</ul>
+<p>请注意，因为Tinysoft目前不支持Python3.10，所以VeighNa Studio 3.0.0没有提供Tinysoft支持。</p>
+</section>
+<section id="id3">
+<h2>脚本使用<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h2>
+<p>脚本使用前，请先按照上文配置好使用的数据服务, 使用时调用相应的函数接口(具体接口支持请参考上文中支持的数据周期)。</p>
+<section id="id4">
+<h3>脚本加载<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h3>
+<section id="id5">
+<h4>在脚本中加载所需的包和数据结构<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h4>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">vnpy.trader.constant</span><span class="w"> </span><span class="kn">import</span> <span class="n">Exchange</span><span class="p">,</span> <span class="n">Interval</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">vnpy.trader.datafeed</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_datafeed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">vnpy.trader.object</span><span class="w"> </span><span class="kn">import</span> <span class="n">HistoryRequest</span>
+
+<span class="c1"># 获取数据服务实例</span>
+<span class="n">datafeed</span> <span class="o">=</span> <span class="n">get_datafeed</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="k">
+<h4>获取k线级别的历史数据<a class="headerlink" href="#k" title="链接到此标题。">¶</a></h4>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">req</span> <span class="o">=</span> <span class="n">HistoryRequest</span><span class="p">(</span>
+    <span class="c1"># 合约代码（示例cu888为米筐连续合约代码，仅用于示范，具体合约代码请根据需求查询数据服务提供商）</span>
+    <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;cu888&quot;</span><span class="p">,</span>
+    <span class="c1"># 合约所在交易所</span>
+    <span class="n">exchange</span><span class="o">=</span><span class="n">Exchange</span><span class="o">.</span><span class="n">SHFE</span><span class="p">,</span>
+    <span class="c1"># 历史数据开始时间</span>
+    <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="c1"># 历史数据结束时间</span>
+    <span class="n">end</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+    <span class="c1"># 数据时间粒度，默认可选分钟级、小时级和日级，具体选择需要结合该数据服务的权限和需求自行选择</span>
+    <span class="n">interval</span><span class="o">=</span><span class="n">Interval</span><span class="o">.</span><span class="n">DAILY</span>
+<span class="p">)</span>
+
+<span class="c1"># 获取k线历史数据</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">datafeed</span><span class="o">.</span><span class="n">query_bar_history</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="tick">
+<h4>获取tick级别的历史数据<a class="headerlink" href="#tick" title="链接到此标题。">¶</a></h4>
+<p>由于tick数据量较大，下载前请先参考上文确认数据服务是否提供tick数据的下载服务</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">req</span> <span class="o">=</span> <span class="n">HistoryRequest</span><span class="p">(</span>
+    <span class="c1"># 合约代码（示例cu888为米筐连续合约代码，仅用于示范，具体合约代码请根据需求查询数据服务提供商）</span>
+    <span class="n">symbol</span><span class="o">=</span><span class="s2">&quot;cu888&quot;</span><span class="p">,</span>
+    <span class="c1"># 合约所在交易所</span>
+    <span class="n">exchange</span><span class="o">=</span><span class="n">Exchange</span><span class="o">.</span><span class="n">SHFE</span><span class="p">,</span>
+    <span class="c1"># 历史数据开始时间</span>
+    <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="c1"># 历史数据结束时间</span>
+    <span class="n">end</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+    <span class="c1"># 数据时间粒度，为tick级别</span>
+    <span class="n">interval</span><span class="o">=</span><span class="n">Interval</span><span class="o">.</span><span class="n">TICK</span>
+<span class="p">)</span>
+
+<span class="c1"># 获取tick历史数据</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">datafeed</span><span class="o">.</span><span class="n">query_tick_history</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">社区版</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">交易功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">安装指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../app/index.html">策略应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">社区版</a><ul>
+  <li><a href="index.html">交易功能</a><ul>
+      <li>Previous: <a href="database.html" title="上一章">数据库</a></li>
+      <li>Next: <a href="pycharm.html" title="下一章">PyCharm开发指南</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/community/info/datafeed.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

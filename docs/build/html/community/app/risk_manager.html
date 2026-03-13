@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>RiskManager - 事前风控管理模块 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="RpcService - RPC服务器模块" href="rpc_service.html" />
+    <link rel="prev" title="DataManager - 历史数据管理模块" href="data_manager.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="riskmanager">
+<h1>RiskManager - 事前风控管理模块<a class="headerlink" href="#riskmanager" title="链接到此标题。">¶</a></h1>
+<section id="id1">
+<h2>功能简介<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h2>
+<p>RiskManager模块是用于<strong>事前风控管理</strong>的功能模块，用户可以通过其UI界面操作来便捷完成启动风控，参数修改和停止风控等任务。</p>
+</section>
+<section id="id2">
+<h2>加载启动<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<section id="veighna-station">
+<h3>VeighNa Station加载<a class="headerlink" href="#veighna-station" title="链接到此标题。">¶</a></h3>
+<p>启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【应用模块】栏勾选【RiskManager】。</p>
+</section>
+<section id="id3">
+<h3>脚本加载<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h3>
+<p>在启动脚本中添加如下代码：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 写在顶部</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">vnpy_riskmanager</span><span class="w"> </span><span class="kn">import</span> <span class="n">RiskManagerApp</span>
+
+<span class="c1"># 写在创建main_engine对象后</span>
+<span class="n">main_engine</span><span class="o">.</span><span class="n">add_app</span><span class="p">(</span><span class="n">RiskManagerApp</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>启动模块<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h2>
+<p>在菜单栏中点击【功能】-&gt; 【交易风控】，或者点击左侧按钮栏的图标：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/risk_manager/1-1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/risk_manager/1-1.png" /></p>
+<p>即可进入事前风控模块的UI界面，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/risk_manager/1-2.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/risk_manager/1-2.png" /></p>
+</section>
+<section id="id5">
+<h2>启动风控<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h2>
+<p>事前风控模块负责在委托通过交易API接口发出前，检查其状态是否符合各种风控规则。风控规则包括交易流控、下单数量、活动委托、撤单总数等，具体如下：</p>
+<ul class="simple">
+<li><p>委托流控相关：</p>
+<ul>
+<li><p>委托流控上限：给定时间窗口内最多允许发出的委托笔数</p></li>
+<li><p>委托流控清空：每隔多少秒清零上述统计的委托笔数</p></li>
+</ul>
+</li>
+<li><p>单笔委托上限：每一笔委托允许的最大下单量</p></li>
+<li><p>总成交上限：今天日内允许的最大总成交笔数（注意不是委托笔数）</p></li>
+<li><p>活动委托上限：允许的处于活动状态（提交中、未成交、部分成交）最大委托数量</p></li>
+<li><p>合约撤单上限：今天日内允许的单合约撤单次数上限（每个合约独立统计）</p></li>
+</ul>
+<p>推荐每天在运行自动交易前启动事前风控，以检查每一笔发出的委托是否符合风控要求：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/risk_manager/1-3.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/risk_manager/1-3.png" /></p>
+<ol class="simple">
+<li><p>在【风控运行状态】一栏的下拉框中选择【启动】；</p></li>
+<li><p>设定各种风控规则的参数后，点击下方的【保存】按钮，即可开始运行风控；</p></li>
+<li><p>此时系统内的每一笔委托，都需要满足全部风控要求（不超过限制）后，才能通过底层接口发出。</p></li>
+</ol>
+</section>
+<section id="id6">
+<h2>参数修改<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h2>
+<p>事前风控模块允许用户自定义风控参数：</p>
+<ul class="simple">
+<li><p>用户可以点击输入框右侧的上下箭头来修改参数，也可以直接输入数字来修改，如下图所示。
+<img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/risk_manager/1-4.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/risk_manager/1-4.png" /></p></li>
+<li><p>修改后请点击【保存】按钮生效。</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>停止风控<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h2>
+<p>不需要运行风控时，用户可以停止风控：</p>
+<ul class="simple">
+<li><p>在【风控运行状态】的下拉框中选择【停止】，如下图所示：
+<img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/risk_manager/1-5.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/risk_manager/1-5.png" /></p></li>
+<li><p>点击下方的【保存】按钮即可停止对委托的风控检查。</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">社区版</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../info/index.html">交易功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">安装指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">策略应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">社区版</a><ul>
+  <li><a href="index.html">策略应用</a><ul>
+      <li>Previous: <a href="data_manager.html" title="上一章">DataManager - 历史数据管理模块</a></li>
+      <li>Next: <a href="rpc_service.html" title="下一章">RpcService - RPC服务器模块</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/community/app/risk_manager.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

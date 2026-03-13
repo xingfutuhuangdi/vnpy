@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>算法交易执行 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="钉钉实时通知" href="elite_dingtalk.html" />
+    <link rel="prev" title="市场深度交易" href="elite_ladder.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>算法交易执行<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h1>
+<p>Veighna Elite Trader提供了算法委托执行交易支持。</p>
+<section id="id2">
+<h2>功能简介<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<p>用户可以通过Veighna Elite Trader主界面的【算法交易】组件来便捷完成启动算法、停止算法等任务。</p>
+<p>【算法交易】组件采用独立进程的算法引擎负责委托订单的具体执行过程。目前提供了五种示例算法，用户可以通过把大笔订单自动拆分成合适的小单分批委托的操作，有效降低交易成本和冲击成本，也可以在设定的阈值内进行高抛低吸操作。</p>
+</section>
+<section id="id3">
+<h2>启动执行<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h2>
+<p>启动Veighna Elite Trader并连接接口之后，点击主界面左侧中部的【算法交易】标签页，就可以看见算法执行组件的操作界面，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algo/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algo/1.png" /></p>
+<p>在单元格【算法】对应的下拉框中选择要启动的算法，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algo/2.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algo/2.png" /></p>
+<p>选择好算法之后，对算法的参数进行配置，点击【启动算法】即可进行算法委托。此时Veighna Elite Trader主界面右侧中上部分的【算法】标签页会显示该算法的执行情况，右侧中上部分的【委托】标签页以及右侧中下部分的【成交】标签页则会显示相关的委托成交情况，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algo/5.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algo/5.png" /></p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algo/6.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algo/6.png" /></p>
+<p>若需停止所有启动的算法，点击【全部停止】按钮即可停止所有算法。</p>
+</section>
+<section id="id4">
+<h2>算法状态监控<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h2>
+<p>启动Veighna Elite Trader之后，点击主界面右侧中上部分的【算法】标签页，就可以看见算法状态监控组件。</p>
+<p>算法状态监控组件用于记录已启动算法的名称、本地代码、方向、开平、价格、总数量、成交量、剩余量、成交均价、状态、参数以及变量。除此之外，组件每行最左侧还嵌入了两个控制单个算法状态的按钮，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algo/7.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algo/7.png" /></p>
+<section id="id5">
+<h3>算法状态<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h3>
+<p>一个算法具有运行、暂停、停止和结束四种状态。当算法启动时，算法处于“运行”状态（RUNNING）。当算法因为完成任务主动结束（计时到了或成交量满足条件等）时，算法处于“结束”状态（FINISHED）。当算法被暂停，算法处于“暂停”状态（PAUSED）。当算法被动结束，算法处于“停止”状态（STOPPED）。</p>
+</section>
+<section id="id6">
+<h3>算法控制按钮<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h3>
+<p>当算法启动后，【算法】组件上会显示算法的状态信息。此时该算法信息最左侧的【停止】和【暂停】按钮皆处于可点击状态。若该算法主动结束了，此时该算法最左侧的两个按钮区域皆会变灰（不可点击）。</p>
+<section id="id7">
+<h4>暂停算法<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h4>
+<p>若想暂停算法的执行，可点击【暂停】按钮，此时原来【暂停】按钮上的文字会变为“恢复”。</p>
+</section>
+<section id="id8">
+<h4>恢复算法<a class="headerlink" href="#id8" title="链接到此标题。">¶</a></h4>
+<p>如果想恢复已暂停算法的执行，则可点击【恢复】按钮进行恢复，此时原来【恢复】按钮上的文字会变为“暂停”。</p>
+</section>
+<section id="id9">
+<h4>停止算法<a class="headerlink" href="#id9" title="链接到此标题。">¶</a></h4>
+<p>若想停止该运行中的算法，可以点击【停止】按钮停止算法，此时该算法最左侧的两个按钮区域皆会变灰（不可点击）。</p>
+</section>
+</section>
+</section>
+<section id="id10">
+<h2>算法介绍<a class="headerlink" href="#id10" title="链接到此标题。">¶</a></h2>
+<p>目前，【算法交易】组件提供了以下五种内置算法：</p>
+<section id="twap">
+<h3>TWAP - 时间加权平均算法<a class="headerlink" href="#twap" title="链接到此标题。">¶</a></h3>
+<p>时间加权平均算法（TWAP）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>将委托数量平均分布在某个时间区域内，每隔一段时间用指定的价格挂出买单（或者卖单）。</p></li>
+<li><p>买入情况：卖一价低于目标价格时，发出委托，委托数量在剩余委托量与委托分割量中取最小值。</p></li>
+<li><p>卖出情况：买一价高于目标价格时，发出委托，委托数量在剩余委托量与委托分割量中取最小值。</p></li>
+</ul>
+</section>
+<section id="iceberg">
+<h3>Iceberg - 冰山算法<a class="headerlink" href="#iceberg" title="链接到此标题。">¶</a></h3>
+<p>冰山算法（Iceberg）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>在某个价位挂单，但是只挂一部分，直到全部成交。</p></li>
+<li><p>买入情况：先检查撤单，最新Tick卖一价低于目标价格，执行撤单；若无活动委托，发出委托，委托数量在剩余委托量与挂出委托量中取最小值。</p></li>
+<li><p>卖出情况：先检查撤单，最新Tick买一价高于目标价格，执行撤单；若无活动委托，发出委托，委托数量在剩余委托量与挂出委托量中取最小值。</p></li>
+</ul>
+</section>
+<section id="sniper">
+<h3>Sniper - 狙击手算法<a class="headerlink" href="#sniper" title="链接到此标题。">¶</a></h3>
+<p>狙击手算法（Sniper）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>监控最新Tick推送的行情，发现好的价格立刻报价成交。</p></li>
+<li><p>买入情况：最新Tick卖一价低于目标价格时，发出委托，委托数量在剩余委托量与卖一量中取最小值。</p></li>
+<li><p>卖出情况：最新Tick买一价高于目标价格时，发出委托，委托数量在剩余委托量与买一量中取最小值。</p></li>
+</ul>
+</section>
+<section id="stop">
+<h3>Stop - 条件委托算法<a class="headerlink" href="#stop" title="链接到此标题。">¶</a></h3>
+<p>条件委托算法（Stop）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>监控最新Tick推送的行情，发现行情突破立刻报价成交。</p></li>
+<li><p>买入情况：Tick最新价高于目标价格时，发出委托，委托价为目标价格加上超价。</p></li>
+<li><p>卖出情况：Tick最新价低于目标价格时，发出委托，委托价为目标价格减去超价。</p></li>
+</ul>
+</section>
+<section id="bestlimit">
+<h3>BestLimit - 最优限价算法<a class="headerlink" href="#bestlimit" title="链接到此标题。">¶</a></h3>
+<p>最优限价算法（BestLimit）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>监控最新Tick推送的行情，发现好的价格立刻报价成交。</p></li>
+<li><p>买入情况：先检查撤单：最新Tick买一价不等于目标价格时，执行撤单；若无活动委托，发出委托，委托价格为最新Tick买一价，委托数量为剩余委托量。</p></li>
+<li><p>卖出情况：先检查撤单：最新Tick买一价不等于目标价格时，执行撤单；若无活动委托，发出委托，委托价格为最新Tick卖一价，委托数量为剩余委托量。</p></li>
+</ul>
+</section>
+</section>
+<section id="id11">
+<h2>多账户支持<a class="headerlink" href="#id11" title="链接到此标题。">¶</a></h2>
+<section id="id12">
+<h3>加载<a class="headerlink" href="#id12" title="链接到此标题。">¶</a></h3>
+<p>算法委托执行交易模块提供了多账户批量下单交易支持（手动）。</p>
+<p>以登录<strong>CTP</strong>接口为例，在登录界面下方的【交易接口】标签页的下拉框中先选中CTP接口。在“自定义接口”处填写自定义的接口名（例如“CTP1”、“CTP2”）之后点击【添加】按钮，填写子账户的配置信息，点击【确定】按钮，则可依次加载对应账户的接口。</p>
+<p>添加完毕后，点击登录界面的【登录】按钮登录VeighNa Elite Trader。在菜单栏中依次点击【系统】-&gt;【连接xxx】（xxx是自定义的接口名，若加载时填写的“CTP1”，则菜单栏中显示的就是【连接CTP1】），即可连接子账户接口。</p>
+<p>连接成功以后，VeighNa Elite Trader主界面【日志】组件会立刻输出登录相关信息，同时用户也可以看到对应的账号信息，持仓信息等相关信息。</p>
+<p>此时已经可以在【市场深度交易】界面通过指定的账户进行委托了。</p>
+</section>
+<section id="id13">
+<h3>算法下单<a class="headerlink" href="#id13" title="链接到此标题。">¶</a></h3>
+<section id="id14">
+<h4>账户下单<a class="headerlink" href="#id14" title="链接到此标题。">¶</a></h4>
+<p>若需通过【算法交易】组件进行多账户委托，可在创建的图表左上角选择账户对应的【接口】启动算法。</p>
+<p>发出委托后，可以在VeighNa Elite Trader主界面【算法】、【委托】和【成交】组件上跟踪到根据对应接口下单的委托，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algo/4.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algo/4.png" /></p>
+<p><strong>请注意</strong>：</p>
+<ul class="simple">
+<li><p>目前支持同时登录最多登录5个交易账户</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">社区版</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Elite版</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../info/index.html">安装使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../strategy/index.html">量化策略</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">智能交易</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Elite版</a><ul>
+  <li><a href="index.html">智能交易</a><ul>
+      <li>Previous: <a href="elite_ladder.html" title="上一章">市场深度交易</a></li>
+      <li>Next: <a href="elite_dingtalk.html" title="下一章">钉钉实时通知</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/elite/extension/elite_algotrading.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

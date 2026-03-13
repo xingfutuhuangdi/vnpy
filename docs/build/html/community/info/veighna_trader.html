@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>VeighNa Trader &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="交易接口" href="gateway.html" />
+    <link rel="prev" title="VeighNa Station" href="veighna_station.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="veighna-trader">
+<h1>VeighNa Trader<a class="headerlink" href="#veighna-trader" title="链接到此标题。">¶</a></h1>
+<section id="id1">
+<h2>启动程序<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h2>
+<section id="id2">
+<h3>图形模式<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h3>
+<p>启动登录VeighNa Station后，用户可通过点击【交易】按钮，勾选所需的交易接口和应用模块，点击【启动】按钮进入VeighNa Trader，如下图所示：
+<img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/22.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/22.png" /></p>
+</section>
+<section id="id3">
+<h3>脚本模式<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h3>
+<p>在文件夹examples/veighna_trader中找到run.py文件(不是veighna_studio下的，需要在github上下载源码）。运行run.py即可进入VeighNa Trader。</p>
+<ul>
+<li><p>以Win10系统为例，用户可在run.py所在文件夹内按住【Shift】，同时点击鼠标右键，选择【在此处打开 powershell 窗口】，在弹出窗口中，输入如下命令，即可启动VeighNa Trader。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">     </span>python<span class="w"> </span>run.py
+</pre></div>
+</div>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/3.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/3.png" /></p>
+</li>
+</ul>
+<p>启动成功的VeighNa Trader如下图所示：
+<img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/23.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/23.png" /></p>
+</section>
+</section>
+<section id="id4">
+<h2>连接接口<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h2>
+<section id="simnow">
+<h3>SimNow仿真<a class="headerlink" href="#simnow" title="链接到此标题。">¶</a></h3>
+<p>以使用SimNow仿真交易账号登录<strong>CTP</strong>接口为例，在VeighNa Trader上的菜单栏中点击【系统】-&gt;【连接CTP】，会弹出账号配置窗口，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/1.png" /></p>
+<p>其中，各字段填写要求如下：</p>
+<ul class="simple">
+<li><p>用户名：xxxxxx （6位纯数字账号）</p></li>
+<li><p>密码：xxxxxx （需要修改一次密码用于盘后测试）</p></li>
+<li><p>经纪商代码：9999 （SimNow默认经纪商编号）</p></li>
+<li><p>交易服务器：182.254.243.31:30001 （盘中测试）</p></li>
+<li><p>行情服务器：182.254.243.31:30011 （盘中测试）</p></li>
+<li><p>产品名称：simnow_client_test</p></li>
+<li><p>授权编码：0000000000000000 （16个0）</p></li>
+</ul>
+<p>请注意：</p>
+<ul class="simple">
+<li><p>用户名需填写InvestorID（6位纯数字），而不是Simnow网站注册时的账号（手机号）。此外，Simnow注册的账号需要修改一次密码后才能登录。</p></li>
+<li><p>如果点击连接接口之后，没有在VeighNa Trader主界面【日志】组件看到任何输出，可以用telnet工具测试一下交易服务器/行情服务器的端口是否开启。</p></li>
+</ul>
+<p>连接成功以后，VeighNa Trader主界面【日志】组件会立刻输出登录相关信息，同时用户也可以看到账号信息，持仓信息，合约查询等相关信息。如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png" /></p>
+</section>
+</section>
+<section id="id5">
+<h2>合约查询<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h2>
+<p>成功连接交易接口后，用户可以通过合约查询功能查询合约信息：
+点击菜单栏的【帮助】-&gt;【合约查询】，在弹出的对话框中直接点击右上角的【查询】按钮，即可查询合约信息（留空则查询所有合约的价格信息），如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/spread_trading/3.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/spread_trading/3.png" /></p>
+<p>请注意，IB接口因为登录时无法自动获取所有的合约信息，只有在用户手动订阅行情时才能获取。因此需要在主界面上先行手动订阅合约行情，才能查到合约信息。</p>
+</section>
+<section id="id6">
+<h2>订阅行情<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h2>
+<p>在交易组件输入交易所和合约代码，按回车键即可订阅行情。如订阅股指期货时，交易所填写CFFEX，代码填写对应合约代码IF2206。</p>
+<p>订阅成功后，交易组件会显示合约名称，并且在下方显示深度行情报价，如最新价、买一价和卖一价，行情组件会显示最新行情信息，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/24.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/24.png" /></p>
+<p>请注意，<strong>输入的合约代码需与在菜单栏的【帮助】-&gt;【查询合约】功能中查到的一致</strong>。</p>
+</section>
+<section id="id7">
+<h2>委托交易<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h2>
+<p>交易组件用于手动发起委托交易，除了填写交易所和合约代码外，还需填写下图中的五个字段（方向、开平、类型、价格和数量）：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/5.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/5.png" /></p>
+<p>请注意，若委托类型为市价单，委托价格可不填；若交易接口只支持单向持仓（接口持仓方向支持详见交易接口篇），可不填写开平方向。</p>
+<p>发出委托后，本地会缓存委托相关信息，并显示到【委托】组件和【活动】组件，此时委托状态为【提交中】。</p>
+<p>交易所收到用户发送的委托后，会将其插入中央订单簿来进行撮合成交，并推送委托回报给用户：</p>
+<ul class="simple">
+<li><p>若委托还未成交，【委托】组件和【活动】组件只会更新时间和委托状态这两个字段，委托状态变成【未成交】；</p></li>
+<li><p>若委托立刻成交，委托相关信息会从【活动】组件移除，新增至【成交】组件，委托状态变成【全部成交】。</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>数据监控<a class="headerlink" href="#id8" title="链接到此标题。">¶</a></h2>
+<p>数据监控由以下组件构成，并附带两个辅助功能：</p>
+<p>选定以下任一组件，鼠标右键可以选择【调整列宽】（特别适用于屏幕分辨率较低的情况）或者选择【保存数据】（CSV格式），如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/12.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/12.png" /></p>
+<section id="id9">
+<h3>行情组件<a class="headerlink" href="#id9" title="链接到此标题。">¶</a></h3>
+<p>行情组件用于对订阅的行情进行实时监控，如下图所示：</p>
+<p><img alt="https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/quick_start/subcribe_contract_module.png" src="https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/quick_start/subcribe_contract_module.png" /></p>
+<p>行情组件监控内容包括以下部分：</p>
+<ul class="simple">
+<li><p>合约信息：合约代码、交易所、合约名称；</p></li>
+<li><p>行情信息：最新价、成交量、开盘价、最高价、最低价、收盘价、买1价、买1量、卖1价、卖1量；</p></li>
+<li><p>其他信息：数据推送时间、接口。</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>活动组件<a class="headerlink" href="#id10" title="链接到此标题。">¶</a></h3>
+<p>活动组件用于存放还未成交的委托，如有限价单或者没有立刻成交的市价单，在该组件中鼠标双击任一委托可以完成撤单操作，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/15.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/15.png" /></p>
+</section>
+<section id="id11">
+<h3>成交组件<a class="headerlink" href="#id11" title="链接到此标题。">¶</a></h3>
+<p>成交组件用于存放已成交的委托，在该组件中，价格、数量和时间都是交易所推送过来的成交信息，而不是委托信息，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/14.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/14.png" /></p>
+</section>
+<section id="id12">
+<h3>委托组件<a class="headerlink" href="#id12" title="链接到此标题。">¶</a></h3>
+<p>委托组件用于存放用户发出的所有委托信息，其委托状态可以是提交中、已撤销、部分成交、全部成交、拒单等，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/13.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/13.png" /></p>
+</section>
+<section id="id13">
+<h3>持仓组件<a class="headerlink" href="#id13" title="链接到此标题。">¶</a></h3>
+<p>持仓组件用于记录历史持仓，需要注意以下字段信息。</p>
+<ul class="simple">
+<li><p>方向：期货品种具有多空方向，而股票品种方向为【净】持仓；</p></li>
+<li><p>数量：总持仓，即今仓 + 昨仓；</p></li>
+<li><p>昨仓：其出现衍生于上期所特有的平今、平昨模式的需要；</p></li>
+<li><p>均价：历史成交的平均价格（某些巨型委托，会发生多次部分成交，需要计算平均价格）；</p></li>
+<li><p>盈亏：持仓盈亏。多仓情况下，盈利 = 当前价格 - 均价，空仓则反之。</p></li>
+</ul>
+<p>若平仓离场，持仓数量清零，浮动盈亏变成实际盈亏从而影响账号余额变化。故以下字段：数量、昨仓、冻结、均价、盈亏均为0，如下图所示：</p>
+<p><img alt="https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/quick_start/query_position.png" src="https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/quick_start/query_position.png" /></p>
+</section>
+<section id="id14">
+<h3>资金组件<a class="headerlink" href="#id14" title="链接到此标题。">¶</a></h3>
+<p>资金组件显示了账号的基础信息，如下图所示：</p>
+<p><img alt="https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/quick_start/query_account.png" src="https://vnpy-community.oss-cn-shanghai.aliyuncs.com/forum_experience/yazhang/quick_start/query_account.png" /></p>
+<p>需要注意以下三个字段信息：</p>
+<ul class="simple">
+<li><p>可用资金：可以用于委托的现金</p></li>
+<li><p>冻结：委托操作冻结的金额（与保证金不是一个概念）</p></li>
+<li><p>余额：总资金，即可用资金 + 保证金 + 浮动盈亏</p></li>
+</ul>
+<p>若全部平仓，浮动盈亏变成实际盈亏，保证金和浮动盈亏清零，总资金等于可用资金。</p>
+</section>
+<section id="id15">
+<h3>日志组件<a class="headerlink" href="#id15" title="链接到此标题。">¶</a></h3>
+<p>日志组件用于显示接口登录信息以及委托报错信息，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png" /></p>
+</section>
+</section>
+<section id="id16">
+<h2>应用模块<a class="headerlink" href="#id16" title="链接到此标题。">¶</a></h2>
+<p>VeighNa官方提供了开箱即用的量化交易应用模块，在启动VeighNa Trader时勾选所需的功能模块，启动成功后在菜单栏中点击【功能】按钮，即可显示所勾选的功能模块，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/25.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/25.png" /></p>
+</section>
+<section id="id17">
+<h2>全局配置<a class="headerlink" href="#id17" title="链接到此标题。">¶</a></h2>
+<p>点击VeighNa Trader菜单栏上的【配置】按钮弹出【全局配置】窗口，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/20.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/20.png" /></p>
+<section id="gui">
+<h3>GUI界面<a class="headerlink" href="#gui" title="链接到此标题。">¶</a></h3>
+<p>font.family和font.size参数用于配置GUI界面，各参数含义如下所示：</p>
+<ul class="simple">
+<li><p>font.family：设置VeighNa Trader图形界面的字体类型，除了默认的Arial字体，也支持Courier New和System字体；</p></li>
+<li><p>font.size：设置VeighNa Trader图形界面的字体大小，用户可以根据自己显示器的实际分辨率对字体大小进行修改。</p></li>
+</ul>
+</section>
+<section id="id18">
+<h3>日志输出<a class="headerlink" href="#id18" title="链接到此标题。">¶</a></h3>
+<p>log.active, log.level, log.console和log.file用于对日志输出进行配置，各参数含义如下所示：</p>
+<ul class="simple">
+<li><p>log.active：控制是否启动LogEngine，默认为True。如果该项修改为False，则后续几项参数都将失效，同时VeighNa Trader运行时不再输出日志或生成日志文件（可以降低部分系统延时）；</p></li>
+<li><p>log.level：控制日志输出的级别，日志可以从轻到严重分成DEBUG、INFO、WARNING、ERROR、CRITICAL五个级别，分别对应10、20、30、40、50的整数值。如果日志等级低于该项设置值，将会被忽略。如果想要记录更详细的系统运行信息，建议将该项整数值调低；</p></li>
+<li><p>log.console：console指的是终端，如Windows系统上的cmd和Powershell，以及Linux上的Terminal。当设置为True时，通过终端运行脚本（需要注册日志事件监听）来启动VeighNa Trader，日志信息会输出在终端中；如果通过VeighNa Station来直接启动VeighNa Trader，则无console输出；</p></li>
+<li><p>log.file：该参数用于控制是否要将日志输出到文件中，建议设置为True，否则无法记录生成的日志。</p></li>
+</ul>
+<p>VeighNa Trader的日志文件，默认位于运行时目录的.vntrader\log目录下，完整路径为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">users</span>\<span class="n">administrator</span>\<span class="o">.</span><span class="n">vntrader</span>\<span class="n">log</span>
+</pre></div>
+</div>
+<p>其中，administrator为当前Windows系统的登录用户名。</p>
+</section>
+<section id="id19">
+<h3>邮件通知<a class="headerlink" href="#id19" title="链接到此标题。">¶</a></h3>
+<p>以email为前缀的参数用于对邮箱进行配置，可以在特定事件发生时（如委托成交，数据异常时）发送邮件实时通知，各参数含义如下：</p>
+<ul class="simple">
+<li><p>email.server: SMTP邮件服务器地址，默认填写好了QQ邮箱服务器地址，可以直接用，如果需要使用其他邮箱，需要自行查找一下其他的服务器地址；</p></li>
+<li><p>email.port: SMTP邮件服务器端口号，默认填写好了QQ邮箱服务器端口，可以直接用；</p></li>
+<li><p>email.username: 填写邮箱地址即可，如xxxx&#64;qq.com；</p></li>
+<li><p>email.password: 对于QQ邮箱，此处不是邮箱密码，而是开通SMTP后系统生成的一个授权码；</p></li>
+<li><p>email.sender: 发送邮箱名，与email.username一致；</p></li>
+<li><p>email.receiver: 接受邮件的邮箱地址。</p></li>
+</ul>
+</section>
+<section id="datafeed">
+<h3>datafeed数据服务<a class="headerlink" href="#datafeed" title="链接到此标题。">¶</a></h3>
+<p>与数据库适配器类似，对于数据服务有一个标准化的接口BaseDatafeed（位于vnpy.trader.datafeed），实现了更加灵活的数据服务支持，具体字段含义如下：</p>
+<ul class="simple">
+<li><p>datafeed.name: 数据服务接口的名称，全称的小写英文字母；</p></li>
+<li><p>datafeed.username: 数据服务的用户名；</p></li>
+<li><p>datafeed.password: 数据服务的密码。</p></li>
+</ul>
+<p>字段如图所示：
+<img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/17.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/quick_start/17.png" /></p>
+<p>目前支持七种datafeed：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/vnpy/vnpy_xt">XT</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vnpy/vnpy_rqdata">RQData</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vnpy/vnpy_udata">Udata</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vnpy/vnpy_tushare">TuShare</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vnpy/vnpy_tqsdk">TQSDK</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vnpy/vnpy_wind">Wind</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vnpy/vnpy_ifind">iFinD</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vnpy/vnpy_tinysoft">Tinysoft</a></p></li>
+</ul>
+</section>
+<section id="id20">
+<h3>数据库<a class="headerlink" href="#id20" title="链接到此标题。">¶</a></h3>
+<p>以database为前缀的参数用于配置数据库服务。目前，VeighNa支持SQLite、MySQL、PostgreSQL、MongoDB、InfluxDB、DolphinDB、Arctic和LevelDB八种数据库。具体配置方法详见项目文档的数据库配置部分。</p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">社区版</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">交易功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">安装指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../app/index.html">策略应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">社区版</a><ul>
+  <li><a href="index.html">交易功能</a><ul>
+      <li>Previous: <a href="veighna_station.html" title="上一章">VeighNa Station</a></li>
+      <li>Next: <a href="gateway.html" title="下一章">交易接口</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/community/info/veighna_trader.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

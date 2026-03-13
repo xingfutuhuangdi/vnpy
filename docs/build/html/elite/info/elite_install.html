@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Elite安装配置 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="基础交易功能" href="elite_trader.html" />
+    <link rel="prev" title="安装使用" href="index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="elite">
+<h1>Elite安装配置<a class="headerlink" href="#elite" title="链接到此标题。">¶</a></h1>
+<p>本文档中安装步骤适用的操作系统包括：</p>
+<ul class="simple">
+<li><p>Windows 10/11</p></li>
+<li><p>Windows Server 2019/2022</p></li>
+</ul>
+<blockquote>
+<div><p>其他版本的Windows系统安装时可能遇到各种依赖库问题，不推荐使用。</p>
+</div></blockquote>
+<section id="id1">
+<h2>安装流程<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h2>
+<section id="id2">
+<h3>安装<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h3>
+<p>下载VeighNa Elite安装包后，双击安装包进入VeighNa Elite安装向导（推荐点击右键，选择【使用管理员身份运行】进行安装），点击【下一步】按钮即可进行安装目录选择，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/install/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/install/1.png" /></p>
+<blockquote>
+<div><p>推荐将VeighNa Elite安装在默认路径的C:\veighna_elite，其他VeighNa Elite文档和教程中均使用该目录作为VeighNa Elite安装目录进行讲解。</p>
+</div></blockquote>
+<p>选择完安装目录之后，点击【安装】即可进行VeighNa Elite安装，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/install/2.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/install/2.png" /></p>
+<p>安装完成后，会转换到安装成功页面，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/install/3.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/install/3.png" /></p>
+<p>此时桌面会出现VeighNa Elite Trader和VeighNa Elite Lab的图标，双击图标即可运行对应程序。</p>
+</section>
+<section id="id3">
+<h3>卸载<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h3>
+<p>如果想卸载VeighNa Elite， 可以在Windows系统中打开【设置】-【应用】-【应用和功能】，找到VeighNa Elite进行卸载。</p>
+</section>
+</section>
+<section id="id4">
+<h2>注意事项<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h2>
+<section id="id5">
+<h3>独立环境<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h3>
+<p>VeighNa Elite不会与VeighNa Studio等其他Python环境冲突，如需使用其他模块，可以通过PYTHONPATH环境变量加载。</p>
+</section>
+<section id="id6">
+<h3>用户信息<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h3>
+<p>用户信息缓存在用户目录下的.vntrader文件夹中。如果卸载时需要清除用户数据及配置信息，需要将.vntrader文件夹删除。如果只是重新安装，只卸载程序即可，重装之后配置信息无需重新填写。</p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">社区版</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Elite版</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">安装使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../strategy/index.html">量化策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extension/index.html">智能交易</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Elite版</a><ul>
+  <li><a href="index.html">安装使用</a><ul>
+      <li>Previous: <a href="index.html" title="上一章">安装使用</a></li>
+      <li>Next: <a href="elite_trader.html" title="下一章">基础交易功能</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/elite/info/elite_install.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

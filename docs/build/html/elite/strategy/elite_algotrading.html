@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>算法交易执行 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="事前交易风控" href="elite_riskmanager.html" />
+    <link rel="prev" title="期权策略交易" href="elite_optionstrategy.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>算法交易执行<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h1>
+<p>AlgoTrading是用于<strong>算法委托执行交易</strong>的模块，用户可以通过其UI界面操作来便捷完成启动算法、保存配置、停止算法等任务。</p>
+<section id="id2">
+<h2>主要优势<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<p>算法交易负责委托订单的具体执行过程。目前，AlgoTrading提供了多种示例算法，用户可以通过把大笔订单自动拆分成合适的小单分批委托，有效降低交易成本和冲击成本，也可以在设定的阈值内进行高抛低吸操作。此外，模块还可监控指定路径的CSV文件进行智能扫单。</p>
+</section>
+<section id="id3">
+<h2>启动模块<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h2>
+<p>对于用户搭建的算法，需要放到vnpy_algotrading.algos目录中，才能被识别加载。</p>
+<p>AlgoTrading模块需要启动之前通过【策略应用】标签页加载。</p>
+<p>启动登录VeighNa Elite Trader后，启动模块之前，请先连接交易接口。看到VeighNa Elite Trader主界面【日志】栏输出“合约信息查询成功”之后再启动模块。</p>
+<p>请注意，IB接口因为登录时无法自动获取所有的合约信息，只有在用户手动订阅行情时才能获取。因此需要在主界面上先行手动订阅合约行情，再启动模块。</p>
+<p>成功连接交易接口后，在菜单栏中点击【功能】-&gt; 【多进程算法交易】，或者点击左侧按钮栏的图标：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/0.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/0.png" /></p>
+<p>即可进入多进程算法交易模块的UI界面，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/1.png" /></p>
+</section>
+<section id="id4">
+<h2>配置算法<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h2>
+<p>配置参数要求如下：</p>
+<ul class="simple">
+<li><p>算法：在下拉框中选择要执行的交易算法；</p></li>
+<li><p>交易所：在下拉框中选择交易所；</p></li>
+<li><p>代码：格式为symbol（合约代码）；</p></li>
+<li><p>方向：多、空；</p></li>
+<li><p>开平：开、平、平今、平昨；</p></li>
+<li><p>价格：委托下单的价格；</p></li>
+<li><p>委托数量：委托的总数量；</p></li>
+<li><p>接口：在下拉框中选择要发出委托的接口。</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>启动算法<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h2>
+<p>目前VeighNa一共提供了五种常用的示例算法。本文档以时间加权平均算法（TWAP）为例，介绍算法启动过程。</p>
+<p>在图形界面左上角填写好算法配置后，点击【启动算法】按钮即可启动算法，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/3.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/3.png" /></p>
+<p>若启动成功，则可在右上角【执行中】界面观测到该算法的执行状态。并在右下角【日志】界面看到“算法启动”日志输出。</p>
+<p>图中算法执行的任务具体为：使用时间加权平均算法，买入20手沪深300股指期货2409合约（IF2409），执行价格为3422元，执行时间为120秒，每轮间隔为6秒；即每隔6秒钟，当合约卖一价小于等于3422时，以3422的价格买入1手沪深300股指期货2409合约，将买入操作分割成20次。</p>
+</section>
+<section id="csv">
+<h2>CSV监控<a class="headerlink" href="#csv" title="链接到此标题。">¶</a></h2>
+<p>当有较多算法需要启动时，可以通过监控CSV文件来启动。点击图形界面左侧的【CSV监控】按钮，在弹出的对话框中选定要监控的文件夹即可监控路径下新写入的CSV文件，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/7.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/7.png" /></p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/8.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/8.png" /></p>
+<p>请注意，CSV文件的格式应如下图所示，和左侧编辑区的各字段一致：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/9.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/9.png" /></p>
+<p>启动成功后，CSV文件中所有算法的执行情况均会在【执行中】、【已结束】和【日志】界面下显示，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/10.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/10.png" /></p>
+</section>
+<section id="id6">
+<h2>暂停算法<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h2>
+<p>当用户需要暂停正在执行的交易算法时，可以在【执行中】界面点击【暂停】按钮，暂停某个正在执行的算法交易，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/4.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/4.png" /></p>
+</section>
+<section id="id7">
+<h2>恢复算法<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h2>
+<p>当用户需要恢复已经暂停的交易算法时，可以在【执行中】界面点击【恢复】按钮，恢复某个已经暂停的算法交易，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/5.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/algotrading/5.png" /></p>
+</section>
+<section id="id8">
+<h2>停止算法<a class="headerlink" href="#id8" title="链接到此标题。">¶</a></h2>
+<p>当用户需要停止正在执行的交易算法时，可以在【执行中】界面点击【停止】按钮，停止某个正在执行的算法交易，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/6.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/algo_trading/6.png" /></p>
+<p>用户也可以在委托交易界面点击最下方的【全部停止】按钮，一键停止所有执行中的算法交易。</p>
+</section>
+<section id="id9">
+<h2>数据监控<a class="headerlink" href="#id9" title="链接到此标题。">¶</a></h2>
+<p>数据监控界面由三个部分构成：</p>
+<p>执行中组件：显示正在执行的算法交易，包括：算法、参数和状态。成功启动算法之后，切换到右上角【执行中】界面，会显示该算法的执行状态。</p>
+<p>已结束组件：显示已完成的算法交易，同样包括：算法、参数和状态。算法结束或者停止之后，切换到右上角【已结束】界面，会显示该算法的执行状态。</p>
+<p>日志组件：显示启动、停止、完成算法的相关日志信息。</p>
+</section>
+<section id="id10">
+<h2>示例算法<a class="headerlink" href="#id10" title="链接到此标题。">¶</a></h2>
+<p>示例算法路径位于vnpy_algotrading.algos文件夹下（请注意，个别算法是没有写开平方向的，若有需要，可基于自身需求进行个性化修改）。目前，算法交易模块提供了以下五种内置算法：</p>
+<section id="twap">
+<h3>TWAP - 时间加权平均算法<a class="headerlink" href="#twap" title="链接到此标题。">¶</a></h3>
+<p>时间加权平均算法（TWAP）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>将委托数量平均分布在某个时间区域内，每隔一段时间用指定的价格挂出买单（或者卖单）。</p></li>
+<li><p>买入情况：卖一价低于目标价格时，发出委托，委托数量在剩余委托量与委托分割量中取最小值。</p></li>
+<li><p>卖出情况：买一价高于目标价格时，发出委托，委托数量在剩余委托量与委托分割量中取最小值。</p></li>
+</ul>
+</section>
+<section id="iceberg">
+<h3>Iceberg - 冰山算法<a class="headerlink" href="#iceberg" title="链接到此标题。">¶</a></h3>
+<p>冰山算法（Iceberg）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>在某个价位挂单，但是只挂一部分，直到全部成交。</p></li>
+<li><p>买入情况：先检查撤单，最新Tick卖一价低于目标价格，执行撤单；若无活动委托，发出委托，委托数量在剩余委托量与挂出委托量中取最小值。</p></li>
+<li><p>卖出情况：先检查撤单，最新Tick买一价高于目标价格，执行撤单；若无活动委托，发出委托，委托数量在剩余委托量与挂出委托量中取最小值。</p></li>
+</ul>
+</section>
+<section id="sniper">
+<h3>Sniper - 狙击手算法<a class="headerlink" href="#sniper" title="链接到此标题。">¶</a></h3>
+<p>狙击手算法（Sniper）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>监控最新Tick推送的行情，发现好的价格立刻报价成交。</p></li>
+<li><p>买入情况：最新Tick卖一价低于目标价格时，发出委托，委托数量在剩余委托量与卖一量中取最小值。</p></li>
+<li><p>卖出情况：最新Tick买一价高于目标价格时，发出委托，委托数量在剩余委托量与买一量中取最小值。</p></li>
+</ul>
+</section>
+<section id="stop">
+<h3>Stop - 条件委托算法<a class="headerlink" href="#stop" title="链接到此标题。">¶</a></h3>
+<p>条件委托算法（Stop）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>监控最新Tick推送的行情，发现行情突破立刻报价成交。</p></li>
+<li><p>买入情况：Tick最新价高于目标价格时，发出委托，委托价为目标价格加上超价。</p></li>
+<li><p>卖出情况：Tick最新价低于目标价格时，发出委托，委托价为目标价格减去超价。</p></li>
+</ul>
+</section>
+<section id="bestlimit">
+<h3>BestLimit - 最优限价算法<a class="headerlink" href="#bestlimit" title="链接到此标题。">¶</a></h3>
+<p>最优限价算法（BestLimit）具体执行步骤如下：</p>
+<ul class="simple">
+<li><p>监控最新Tick推送的行情，发现好的价格立刻报价成交。</p></li>
+<li><p>买入情况：先检查撤单：最新Tick买一价不等于目标价格时，执行撤单；若无活动委托，发出委托，委托价格为最新Tick买一价，委托数量为剩余委托量。</p></li>
+<li><p>卖出情况：先检查撤单：最新Tick买一价不等于目标价格时，执行撤单；若无活动委托，发出委托，委托价格为最新Tick卖一价，委托数量为剩余委托量。</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">社区版</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Elite版</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../info/index.html">安装使用</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">量化策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extension/index.html">智能交易</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Elite版</a><ul>
+  <li><a href="index.html">量化策略</a><ul>
+      <li>Previous: <a href="elite_optionstrategy.html" title="上一章">期权策略交易</a></li>
+      <li>Next: <a href="elite_riskmanager.html" title="下一章">事前交易风控</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/elite/strategy/elite_algotrading.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

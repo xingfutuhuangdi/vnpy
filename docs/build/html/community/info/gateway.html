@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>交易接口 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="数据库" href="database.html" />
+    <link rel="prev" title="VeighNa Trader" href="veighna_trader.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>交易接口<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h1>
+<section id="id2">
+<h2>加载启动<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<section id="veighna-station">
+<h3>VeighNa Station加载<a class="headerlink" href="#veighna-station" title="链接到此标题。">¶</a></h3>
+<p>启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【交易接口】栏勾选想要交易的接口。</p>
+</section>
+<section id="id3">
+<h3>脚本加载<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h3>
+<p>以CTP接口为例，在启动脚本中添加如下代码：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 写在顶部</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">vnpy_ctp</span><span class="w"> </span><span class="kn">import</span> <span class="n">CtpGateway</span>
+
+<span class="c1"># 写在创建main_engine对象后</span>
+<span class="n">main_engine</span><span class="o">.</span><span class="n">add_gateway</span><span class="p">(</span><span class="n">CtpGateway</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>连接接口<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h2>
+<p>在图形化操作界面VeighNa Trader上的菜单栏中点击【系统】-&gt;【连接CTP】，会弹出账号配置窗口，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/1.png" /></p>
+<p>输入账号、密码等相关信息即可连接接口，并立刻进行查询工作: 如查询账号信息、查询持仓、查询委托信息、查询成交信息等。查询成功后可在主界面的组件中看到输出的日志，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/5.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/5.png" /></p>
+<section id="json">
+<h3>修改json配置文件<a class="headerlink" href="#json" title="链接到此标题。">¶</a></h3>
+<p>接口配置相关信息保存在json文件中，放置在用户目录下的.vntrader文件夹内，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/3.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/3.png" /></p>
+<p>如果需要修改接口配置文件，用户既可以在图形化界面VeighNa Trader内修改，也可以直接在.vntrader文件夹下修改对应的json文件。</p>
+<p>另外将json配置文件分离于vnpy的好处在于：避免每次升级都要重新配置json文件。</p>
+</section>
+<section id="id5">
+<h3>查看可交易的合约<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h3>
+<p>先登录接口，然后在菜单栏中点击【帮助】-&gt;【查询合约】即可弹出空白的【查询合约】窗口，点击【查询】按钮后才会显示查询结果。留空则查询全部合约，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/4.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/4.png" /></p>
+</section>
+</section>
+<section id="id6">
+<h2>接口分类<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h2>
+<p>| 接口                 |                    类型                         |
+| ---------------------| :--------------------------------------------: |
+| CTP                  |           期货、期货期权（实盘6.5.1）            |
+| CTP测试              |           期货、期货期权（测试6.5.1）            |
+| CTP Mini            |            期货、期货期权（实盘1.4）             |
+| 飞马                 |                    期货                         |
+| CTP期权              |             ETF期权（实盘20190802）              |
+| 顶点飞创             |                    ETF期权                       |
+| 顶点HTS              |                    ETF期权                       |
+| 恒生UFT              |                期货、ETF期权                     |
+| 易盛                 |                期货、黄金TD                      |
+| 中泰XTP              |              A股、两融、ETF期权                  |
+| 国泰君安统一交易网关   |                    A股                          |
+| 华鑫奇点股票          |                    A股                          |
+| 华鑫奇点期权          |                  ETF期权                        |
+| 中亿汇达Comstar       |                银行间市场                       |
+| 东方证券OST           |                    A股                          |
+| 盈透证券              |                 海外多品种                      |
+| 易盛9.0外盘           |                  外盘期货                       |
+| 直达期货              |                  外盘期货                       |
+| 融航                 |                  期货资管                        |
+| TTS                  |                    期货                         |
+| 飞鼠                  |                  黄金TD                         |
+| 金仕达黄金            |                  黄金TD                         |</p>
+</section>
+<section id="id7">
+<h2>接口详解<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h2>
+<section id="ctp">
+<h3>CTP<a class="headerlink" href="#ctp" title="链接到此标题。">¶</a></h3>
+<section id="id8">
+<h4>接口支持<a class="headerlink" href="#id8" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+<li><p>Ubuntu</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>期货</p></li>
+<li><p>期货期权</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id9">
+<h4>相关字段<a class="headerlink" href="#id9" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>用户名：</p></li>
+<li><p>密码：</p></li>
+<li><p>经纪商代码：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>产品名称：</p></li>
+<li><p>授权编码：</p></li>
+</ul>
+</section>
+<section id="id10">
+<h4>获取账号<a class="headerlink" href="#id10" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>仿真账号：从SimNow网站上获取。只需输入手机号码和短信验证即可（短信验证有时只能在工作日正常工作时段收到）。SimNow的用户名(InvestorID)为6位纯数字，经纪商编号为9999，并且提供两套环境用于盘中仿真交易以及盘后的测试。需要修改一次密码之后才能使用。请注意每套仿真环境的适用时间段是不同的。</p></li>
+<li><p>实盘账号：在期货公司开户，通过联系客户经理可以开通。用户名为纯数字，经纪商编号也是4位纯数字（每个期货公司的经纪商编号都不同）。另外，实盘账号也可以开通仿真交易功能，同样需要联系客户经理。</p></li>
+</ul>
+</section>
+</section>
+<section id="ctptest-ctp">
+<h3>CTPTEST（CTP测试）<a class="headerlink" href="#ctptest-ctp" title="链接到此标题。">¶</a></h3>
+<section id="id11">
+<h4>接口支持<a class="headerlink" href="#id11" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+<li><p>Ubuntu</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>期货</p></li>
+<li><p>期货期权</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id12">
+<h4>相关字段<a class="headerlink" href="#id12" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>用户名：</p></li>
+<li><p>密码：</p></li>
+<li><p>经纪商代码：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>产品名称：</p></li>
+<li><p>授权编码：</p></li>
+</ul>
+</section>
+<section id="id13">
+<h4>获取账号<a class="headerlink" href="#id13" title="链接到此标题。">¶</a></h4>
+<p>在期货公司开户，通过联系客户经理向期货公司申请进行穿透式接入测试。</p>
+</section>
+</section>
+<section id="mini-ctp-mini">
+<h3>MINI（CTP Mini）<a class="headerlink" href="#mini-ctp-mini" title="链接到此标题。">¶</a></h3>
+<section id="id14">
+<h4>接口支持<a class="headerlink" href="#id14" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+<li><p>Ubuntu</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>期货</p></li>
+<li><p>期货期权</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id15">
+<h4>相关字段<a class="headerlink" href="#id15" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>用户名：</p></li>
+<li><p>密码：</p></li>
+<li><p>经纪商代码：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>产品名称：</p></li>
+<li><p>授权编码：</p></li>
+</ul>
+</section>
+<section id="id16">
+<h4>获取账号<a class="headerlink" href="#id16" title="链接到此标题。">¶</a></h4>
+<p>在期货公司开户，通过联系客户经理可以开通。用户名为纯数字，经纪商编号也是4位纯数字（每个期货公司的经纪商编号都不同）。另外，实盘账号也可以开通仿真交易功能，同样需要联系客户经理。</p>
+</section>
+</section>
+<section id="femas">
+<h3>FEMAS（飞马）<a class="headerlink" href="#femas" title="链接到此标题。">¶</a></h3>
+<section id="id17">
+<h4>接口支持<a class="headerlink" href="#id17" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>期货</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id18">
+<h4>相关字段<a class="headerlink" href="#id18" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>用户名：</p></li>
+<li><p>密码：</p></li>
+<li><p>经纪商代码：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>产品名称：</p></li>
+<li><p>授权编码：</p></li>
+</ul>
+</section>
+<section id="id19">
+<h4>获取账号<a class="headerlink" href="#id19" title="链接到此标题。">¶</a></h4>
+<p>在期货公司开户，通过联系客户经理可以开通。用户名为纯数字，经纪商代码也是4位纯数字（每个期货公司的经纪商编号都不同）。另外，实盘账号也可以开通仿真交易功能，同样需要联系客户经理。</p>
+</section>
+</section>
+<section id="sopt-ctp">
+<h3>SOPT（CTP期权）<a class="headerlink" href="#sopt-ctp" title="链接到此标题。">¶</a></h3>
+<section id="id20">
+<h4>接口支持<a class="headerlink" href="#id20" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+<li><p>Ubuntu</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>ETF期权</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id21">
+<h4>相关字段<a class="headerlink" href="#id21" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>用户名：</p></li>
+<li><p>密码：</p></li>
+<li><p>经纪商代码：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>产品名称：</p></li>
+<li><p>授权编码：</p></li>
+</ul>
+</section>
+<section id="id22">
+<h4>获取账号<a class="headerlink" href="#id22" title="链接到此标题。">¶</a></h4>
+<p>在期货公司开户，通过联系客户经理可以开通。用户名为纯数字，经纪商代码也是4位纯数字（每个期货公司的经纪商代码都不同）。另外，实盘账号也可以开通仿真交易功能，同样需要联系客户经理。</p>
+</section>
+</section>
+<section id="sec">
+<h3>SEC（顶点飞创）<a class="headerlink" href="#sec" title="链接到此标题。">¶</a></h3>
+<section id="id23">
+<h4>接口支持<a class="headerlink" href="#id23" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>ETF期权</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>股票只支持单向持仓</p></li>
+<li><p>股票期权只支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id24">
+<h4>相关字段<a class="headerlink" href="#id24" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>账号：</p></li>
+<li><p>密码：</p></li>
+<li><p>行情地址：</p></li>
+<li><p>交易地址：</p></li>
+<li><p>行情协议：TCP、UDP</p></li>
+<li><p>授权码：</p></li>
+<li><p>产品号：</p></li>
+<li><p>采集类型：顶点、恒生、金证、金仕达</p></li>
+<li><p>行情压缩：N、Y</p></li>
+</ul>
+</section>
+<section id="id25">
+<h4>获取账号<a class="headerlink" href="#id25" title="链接到此标题。">¶</a></h4>
+<p>在期货公司开户，通过联系客户经理可以开通。</p>
+</section>
+</section>
+<section id="hts-hts">
+<h3>HTS（顶点HTS）<a class="headerlink" href="#hts-hts" title="链接到此标题。">¶</a></h3>
+<section id="id26">
+<h4>接口支持<a class="headerlink" href="#id26" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>ETF期权</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id27">
+<h4>相关字段<a class="headerlink" href="#id27" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>账号：</p></li>
+<li><p>密码：</p></li>
+<li><p>行情地址：</p></li>
+<li><p>交易地址：</p></li>
+<li><p>行情协议：TCP、UDP</p></li>
+<li><p>授权码：</p></li>
+<li><p>产品号：</p></li>
+<li><p>采集类型：顶点、恒生、金证、金仕达</p></li>
+<li><p>行情压缩：N、Y</p></li>
+</ul>
+</section>
+<section id="id28">
+<h4>获取账号<a class="headerlink" href="#id28" title="链接到此标题。">¶</a></h4>
+<p>在期货公司开户，通过联系客户经理可以开通。</p>
+</section>
+</section>
+<section id="uft-uft">
+<h3>UFT（恒生UFT）<a class="headerlink" href="#uft-uft" title="链接到此标题。">¶</a></h3>
+<section id="id29">
+<h4>接口支持<a class="headerlink" href="#id29" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+<li><p>Ubuntu</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>期货</p></li>
+<li><p>ETF期权</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id30">
+<h4>相关字段<a class="headerlink" href="#id30" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>用户名：</p></li>
+<li><p>密码：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>服务器类型：期货、ETF期权</p></li>
+<li><p>产品名称：</p></li>
+<li><p>授权编码：</p></li>
+<li><p>委托类型：q</p></li>
+</ul>
+</section>
+<section id="id31">
+<h4>获取账号<a class="headerlink" href="#id31" title="链接到此标题。">¶</a></h4>
+<p>测试账号请通过恒生电子申请。</p>
+</section>
+</section>
+<section id="esunny">
+<h3>ESUNNY（易盛）<a class="headerlink" href="#esunny" title="链接到此标题。">¶</a></h3>
+<section id="id32">
+<h4>接口支持<a class="headerlink" href="#id32" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+<li><p>Ubuntu</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>期货</p></li>
+<li><p>黄金TD</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不支持</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id33">
+<h4>相关字段<a class="headerlink" href="#id33" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>行情账号：</p></li>
+<li><p>行情密码：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>行情端口：0</p></li>
+<li><p>行情授权码：</p></li>
+<li><p>交易账号：</p></li>
+<li><p>交易密码：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>交易端口：0</p></li>
+<li><p>交易产品名称：</p></li>
+<li><p>交易授权编码：</p></li>
+<li><p>交易系统：内盘、外盘</p></li>
+</ul>
+</section>
+<section id="id34">
+<h4>获取账号<a class="headerlink" href="#id34" title="链接到此标题。">¶</a></h4>
+<p>测试账号请通过易盛官方网站申请。</p>
+</section>
+</section>
+<section id="xtp">
+<h3>XTP（中泰柜台）<a class="headerlink" href="#xtp" title="链接到此标题。">¶</a></h3>
+<section id="id35">
+<h4>接口支持<a class="headerlink" href="#id35" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+<li><p>Ubuntu</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>A股</p></li>
+<li><p>两融</p></li>
+<li><p>ETF期权</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>股票只支持单向持仓</p></li>
+<li><p>其余标的支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id36">
+<h4>相关字段<a class="headerlink" href="#id36" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>账号：</p></li>
+<li><p>密码：</p></li>
+<li><p>客户号: 1</p></li>
+<li><p>行情地址：</p></li>
+<li><p>行情端口: 0</p></li>
+<li><p>交易地址：</p></li>
+<li><p>交易端口: 0</p></li>
+<li><p>行情协议: TCP、UDP</p></li>
+<li><p>日志级别：FATAL、ERROR、WARNING、INFO、DEBUG、TRACE</p></li>
+<li><p>授权码：</p></li>
+</ul>
+</section>
+<section id="id37">
+<h4>获取账号<a class="headerlink" href="#id37" title="链接到此标题。">¶</a></h4>
+<p>测试账号请通过中泰证券申请。</p>
+</section>
+<section id="id38">
+<h4>其他特点<a class="headerlink" href="#id38" title="链接到此标题。">¶</a></h4>
+<p>XTP是首家提供融资融券的极速柜台。</p>
+</section>
+</section>
+<section id="hft">
+<h3>HFT（国泰君安统一交易网关）<a class="headerlink" href="#hft" title="链接到此标题。">¶</a></h3>
+<section id="id39">
+<h4>接口支持<a class="headerlink" href="#id39" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>A股</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持单向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id40">
+<h4>相关字段<a class="headerlink" href="#id40" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>交易用户名：</p></li>
+<li><p>交易密码:</p></li>
+<li><p>交易服务器:</p></li>
+<li><p>交易端口：</p></li>
+<li><p>机构代号：</p></li>
+<li><p>营业部代号：</p></li>
+<li><p>网关：</p></li>
+<li><p>行情用户名：</p></li>
+<li><p>行情密码：</p></li>
+<li><p>行情服务器:</p></li>
+<li><p>行情端口：</p></li>
+</ul>
+</section>
+<section id="id41">
+<h4>获取账号<a class="headerlink" href="#id41" title="链接到此标题。">¶</a></h4>
+<p>测试账号请通过国泰君安申请。</p>
+</section>
+</section>
+<section id="torastock">
+<h3>TORASTOCK（华鑫奇点股票）<a class="headerlink" href="#torastock" title="链接到此标题。">¶</a></h3>
+<section id="id42">
+<h4>接口支持<a class="headerlink" href="#id42" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>A股</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持单向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id43">
+<h4>相关字段<a class="headerlink" href="#id43" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>账号：</p></li>
+<li><p>密码：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>账号类型：用户代码、资金账号</p></li>
+<li><p>地址类型：前置地址、FENS地址</p></li>
+</ul>
+</section>
+<section id="id44">
+<h4>获取账号<a class="headerlink" href="#id44" title="链接到此标题。">¶</a></h4>
+<p>测试账号请通过华鑫证券申请。</p>
+</section>
+</section>
+<section id="toraoption">
+<h3>TORAOPTION（华鑫奇点期权）<a class="headerlink" href="#toraoption" title="链接到此标题。">¶</a></h3>
+<section id="id45">
+<h4>接口支持<a class="headerlink" href="#id45" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>ETF期权</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id46">
+<h4>相关字段<a class="headerlink" href="#id46" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>账号：</p></li>
+<li><p>密码：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>账号类型：用户代码、资金账号</p></li>
+<li><p>地址类型：前置地址、FENS地址</p></li>
+</ul>
+</section>
+<section id="id47">
+<h4>获取账号<a class="headerlink" href="#id47" title="链接到此标题。">¶</a></h4>
+<p>测试账号请通过华鑫证券申请。</p>
+</section>
+</section>
+<section id="comstar">
+<h3>COMSTAR（中亿汇达）<a class="headerlink" href="#comstar" title="链接到此标题。">¶</a></h3>
+<section id="id48">
+<h4>接口支持<a class="headerlink" href="#id48" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>银行间市场</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>无</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id49">
+<h4>相关字段<a class="headerlink" href="#id49" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>交易服务器：</p></li>
+<li><p>用户名：</p></li>
+<li><p>密码：</p></li>
+<li><p>Key：</p></li>
+<li><p>routing_type：5</p></li>
+<li><p>valid_until_time：18:30:00.000</p></li>
+</ul>
+</section>
+<section id="id50">
+<h4>获取账号<a class="headerlink" href="#id50" title="链接到此标题。">¶</a></h4>
+<p>只有各类大型金融机构才能用（券商自营交易部、银行金融市场部等），私募或者个人都用不了。需要购买ComStar的交易接口服务之后才能使用。</p>
+</section>
+</section>
+<section id="ost">
+<h3>OST（东方证券）<a class="headerlink" href="#ost" title="链接到此标题。">¶</a></h3>
+<section id="id51">
+<h4>接口支持<a class="headerlink" href="#id51" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>A股</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>单向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id52">
+<h4>相关字段<a class="headerlink" href="#id52" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>用户名：</p></li>
+<li><p>密码：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>上交所快照地址：</p></li>
+<li><p>上交所快照端口: 0</p></li>
+<li><p>深交所快照地址：</p></li>
+<li><p>深交所快照端口: 0</p></li>
+<li><p>本机ip地址：</p></li>
+</ul>
+</section>
+<section id="id53">
+<h4>获取账号<a class="headerlink" href="#id53" title="链接到此标题。">¶</a></h4>
+<p>在证券公司开户，通过联系客户经理可以开通。</p>
+</section>
+</section>
+<section id="ib">
+<h3>IB（盈透证券）<a class="headerlink" href="#ib" title="链接到此标题。">¶</a></h3>
+<section id="id54">
+<h4>接口支持<a class="headerlink" href="#id54" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+<li><p>Ubuntu</p></li>
+<li><p>Mac</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>海外多品种</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持单向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id55">
+<h4>相关字段<a class="headerlink" href="#id55" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>TWS地址：127.0.0.1</p></li>
+<li><p>TWS端口：7497</p></li>
+<li><p>客户号：1</p></li>
+<li><p>交易账户：</p></li>
+</ul>
+</section>
+<section id="id56">
+<h4>获取账号<a class="headerlink" href="#id56" title="链接到此标题。">¶</a></h4>
+<p>在盈透证券开户并且入金后可以获得API接入权限。</p>
+</section>
+<section id="id57">
+<h4>其他特点<a class="headerlink" href="#id57" title="链接到此标题。">¶</a></h4>
+<p>可交易品种覆盖诸多海外市场的股票、期权、期权；手续费相对较低。</p>
+<p>请注意，IB接口的合约代码较为特殊，请前往官网的产品查询板块查询。VeighNa Trader中使用的是盈透证券对于每个合约在某一交易所的唯一标识符ConId来作为合约代码，而非Symbol或者LocalName。</p>
+</section>
+</section>
+<section id="tap-9-0">
+<h3>TAP（易盛9.0外盘）<a class="headerlink" href="#tap-9-0" title="链接到此标题。">¶</a></h3>
+<section id="id58">
+<h4>接口支持<a class="headerlink" href="#id58" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>外盘期货</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持单向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id59">
+<h4>相关字段<a class="headerlink" href="#id59" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>行情账号：</p></li>
+<li><p>行情密码：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>行情端口：0</p></li>
+<li><p>交易账号：</p></li>
+<li><p>交易密码：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>交易端口：0</p></li>
+<li><p>授权码：</p></li>
+</ul>
+</section>
+<section id="id60">
+<h4>获取账号<a class="headerlink" href="#id60" title="链接到此标题。">¶</a></h4>
+<p>测试账号请通过易盛官方网站申请。</p>
+</section>
+</section>
+<section id="da">
+<h3>DA（直达期货）<a class="headerlink" href="#da" title="链接到此标题。">¶</a></h3>
+<section id="id61">
+<h4>接口支持<a class="headerlink" href="#id61" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>外盘期货</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id62">
+<h4>相关字段<a class="headerlink" href="#id62" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>用户名：</p></li>
+<li><p>密码：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>授权码：</p></li>
+</ul>
+</section>
+<section id="id63">
+<h4>获取账号<a class="headerlink" href="#id63" title="链接到此标题。">¶</a></h4>
+<p>在直达期货开户并且入金后可以获得API接入权限。</p>
+</section>
+</section>
+<section id="rohon">
+<h3>ROHON（融航）<a class="headerlink" href="#rohon" title="链接到此标题。">¶</a></h3>
+<section id="id64">
+<h4>接口支持<a class="headerlink" href="#id64" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+<li><p>Ubuntu</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>期货资管</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id65">
+<h4>相关字段<a class="headerlink" href="#id65" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>用户名：</p></li>
+<li><p>密码：</p></li>
+<li><p>经纪商代码：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>产品名称：</p></li>
+<li><p>授权编码：</p></li>
+</ul>
+</section>
+<section id="id66">
+<h4>获取账号<a class="headerlink" href="#id66" title="链接到此标题。">¶</a></h4>
+<p>测试账号请通过融航申请。</p>
+<p>请注意，融航接口的【经纪商代码】不再是纯数字形态，而是可以包含英文和数字的字符串；VeighNa连接融航进行交易在穿透式认证中属于【中继】模式，而不再是连接柜台（CTP、恒生等）进行交易时的【直连】模式，所以在申请穿透式认证测试填表时不要选错。</p>
+</section>
+</section>
+<section id="tts">
+<h3>TTS<a class="headerlink" href="#tts" title="链接到此标题。">¶</a></h3>
+<section id="id67">
+<h4>接口支持<a class="headerlink" href="#id67" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Windows</p></li>
+<li><p>Ubuntu</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>期货</p></li>
+<li><p>期货期权</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id68">
+<h4>相关字段<a class="headerlink" href="#id68" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>用户名：</p></li>
+<li><p>密码：</p></li>
+<li><p>经纪商代码：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>产品名称：</p></li>
+<li><p>授权编码：</p></li>
+</ul>
+</section>
+<section id="id69">
+<h4>获取账号<a class="headerlink" href="#id69" title="链接到此标题。">¶</a></h4>
+<p>请通过OpenCTP平台获取。</p>
+</section>
+</section>
+<section id="sgit">
+<h3>SGIT（飞鼠）<a class="headerlink" href="#sgit" title="链接到此标题。">¶</a></h3>
+<section id="id70">
+<h4>接口支持<a class="headerlink" href="#id70" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Ubuntu</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>黄金TD</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id71">
+<h4>相关字段<a class="headerlink" href="#id71" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>用户名：</p></li>
+<li><p>密码：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>产品名称：</p></li>
+<li><p>授权编码：</p></li>
+</ul>
+</section>
+<section id="id72">
+<h4>获取账号<a class="headerlink" href="#id72" title="链接到此标题。">¶</a></h4>
+<p>请通过黄金现货经纪商获取。</p>
+</section>
+</section>
+<section id="ksgold">
+<h3>KSGOLD（金仕达黄金）<a class="headerlink" href="#ksgold" title="链接到此标题。">¶</a></h3>
+<section id="id73">
+<h4>接口支持<a class="headerlink" href="#id73" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>操作系统</p>
+<ul>
+<li><p>Ubuntu</p></li>
+</ul>
+</li>
+<li><p>交易品种</p>
+<ul>
+<li><p>黄金TD</p></li>
+</ul>
+</li>
+<li><p>持仓方向</p>
+<ul>
+<li><p>只支持双向持仓</p></li>
+</ul>
+</li>
+<li><p>历史数据</p>
+<ul>
+<li><p>不提供</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id74">
+<h4>相关字段<a class="headerlink" href="#id74" title="链接到此标题。">¶</a></h4>
+<ul class="simple">
+<li><p>用户名：</p></li>
+<li><p>密码：</p></li>
+<li><p>交易服务器：</p></li>
+<li><p>行情服务器：</p></li>
+<li><p>账号类型：银行账号、黄金账号</p></li>
+</ul>
+</section>
+<section id="id75">
+<h4>获取账号<a class="headerlink" href="#id75" title="链接到此标题。">¶</a></h4>
+<p>请通过黄金现货经纪商获取。</p>
+</section>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">社区版</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">交易功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">安装指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../app/index.html">策略应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">社区版</a><ul>
+  <li><a href="index.html">交易功能</a><ul>
+      <li>Previous: <a href="veighna_trader.html" title="上一章">VeighNa Trader</a></li>
+      <li>Next: <a href="database.html" title="下一章">数据库</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/community/info/gateway.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

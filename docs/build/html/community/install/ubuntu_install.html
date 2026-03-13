@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Ubuntu安装指南 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="Mac安装指南" href="mac_install.html" />
+    <link rel="prev" title="Windows安装指南" href="windows_install.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="ubuntu">
+<h1>Ubuntu安装指南<a class="headerlink" href="#ubuntu" title="链接到此标题。">¶</a></h1>
+<section id="python">
+<h2>检查Python<a class="headerlink" href="#python" title="链接到此标题。">¶</a></h2>
+<p>检查本地Python版本，需要需要3.7版本以上的版本，可在命令行运行python命令查看。</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/40.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/40.png" /></p>
+</section>
+<section id="veighna">
+<h2>安装VeighNa<a class="headerlink" href="#veighna" title="链接到此标题。">¶</a></h2>
+<section id="id1">
+<h3>下载源代码<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h3>
+<p>下载VeighNa源代码（Ubuntu系统请选择tar.gz格式）：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/vnpy/vnpy/releases">VeighNa Github下载地址</a></p></li>
+<li><p><a class="reference external" href="https://gitee.com/mirrors/vn-py/releases">VeighNa Gitee下载地址</a></p></li>
+</ul>
+<p>下载完成后用tar命令解压文件，如下图所示。</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/41.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/41.png" /></p>
+</section>
+<section id="id2">
+<h3>执行一键安装<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h3>
+<p>安装VeighNa前需要先安装gcc编译器，用于编译C++类接口文件。在终端中运行以下命令：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span>
+</pre></div>
+</div>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/39.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/39.png" /></p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/43.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/43.png" /></p>
+<p>然后进入之前解压出来的VeighNa源代码目录（包含install.sh文件）</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/42.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/42.png" /></p>
+<p>打开终端运行如下命令执行一键安装：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">bash</span> <span class="n">install</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>请注意，如果python软连接名不为python，比如python3或python3.10，请执行如下命令：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">bash</span> <span class="n">install</span><span class="o">.</span><span class="n">sh</span> <span class="n">你的python软连接</span>
+</pre></div>
+</div>
+<p>一键安装过程整体分为3步：</p>
+<ol class="simple">
+<li><p>下载安装ta-lib库和numpy；</p></li>
+<li><p>安装VeighNa本身。</p></li>
+</ol>
+<blockquote>
+<div><p>若是在虚拟机上运行，请把内存调至4G以上，否则会报错内存不足。</p>
+</div></blockquote>
+</section>
+</section>
+<section id="veighna-trader">
+<h2>启动VeighNa Trader<a class="headerlink" href="#veighna-trader" title="链接到此标题。">¶</a></h2>
+<p>进入解压VeighNa源代码的目录下，在文件夹examples/veighna_trader中找到run.py文件。</p>
+<p>点击鼠标右键打开终端，输入如下命令即可启动VeighNa Trader：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> 
+</pre></div>
+</div>
+<p>请注意run.py中包含了较多的启动加载项（交易接口和应用模块），请根据自己所用的操作系统以及实际的交易需求修改调整使用（若需加载接口，取消接口前注释符号即可）。</p>
+<p>请注意部分接口不支持Ubuntu系统，请不要加载。连接接口介绍详见交易接口篇（可查看接口支持的操作系统）。</p>
+<blockquote>
+<div><p>如果启动时出现一些库版本不兼容的情况，可根据提示对这些库重新pip安装。</p>
+</div></blockquote>
+</section>
+<section id="id3">
+<h2>常见问题<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h2>
+<section id="id4">
+<h3>Python开发环境问题处理<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h3>
+<p>如果安装时出现由于找不到头文件导致的报错“command ‘gcc’ failed with exit status 1”，可能是没有正确安装Python开发环境造成的。可以在终端中运行下述命令尝试解决：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">你的python软连接</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>图形驱动问题处理<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h3>
+<p>在有图形界面的Ubuntu系统上启动，如果出现qt.qpa.plugin: Could not load the Qt platform plugin &quot;xcb&quot; in &quot;&quot; even though it was found的报错，可以在终端中运行下述命令来安装libxcb-xinerama0，尝试解决图形驱动的依赖问题：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libxcb</span><span class="o">-</span><span class="n">xinerama0</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>中文编码问题处理<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h3>
+<p>如果Ubuntu系统语言是英文，在连接CTP接口这类使用中文语言的接口时，可能会出现下述报错：</p>
+<p>terminate called after throwing an instance of 'std::runtime_error'
+what(): locale::facet::_S_create_c_locale name not valid</p>
+<p>可以使用local-gen安装中文编码尝试解决：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">locale</span><span class="o">-</span><span class="n">gen</span> <span class="n">zh_CN</span><span class="o">.</span><span class="n">GB18030</span>
+</pre></div>
+</div>
+<p>如果还没有解决，可能是因为系统缺少中文字体支持。解决方法如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">fonts</span><span class="o">-</span><span class="n">noto</span><span class="o">-</span><span class="n">cjk</span> <span class="n">fonts</span><span class="o">-</span><span class="n">wqy</span><span class="o">-</span><span class="n">zenhei</span> <span class="n">fonts</span><span class="o">-</span><span class="n">wqy</span><span class="o">-</span><span class="n">microhei</span>
+<span class="n">fc</span><span class="o">-</span><span class="n">cache</span> <span class="o">-</span><span class="n">f</span> <span class="o">-</span><span class="n">v</span>
+<span class="n">fc</span><span class="o">-</span><span class="nb">list</span> <span class="p">:</span><span class="n">lang</span><span class="o">=</span><span class="n">zh</span> <span class="o">|</span> <span class="n">wc</span> <span class="o">-</span><span class="n">l</span>
+<span class="n">sudo</span> <span class="n">locale</span><span class="o">-</span><span class="n">gen</span> <span class="n">zh_CN</span><span class="o">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span> <span class="n">zh_CN</span><span class="o">.</span><span class="n">GB18030</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3>安装依赖与路径分隔符<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h3>
+<p>在Linux系统中安装C++接口时，如果使用<code class="docutils literal notranslate"><span class="pre">--no-build-isolation</span></code>参数，需要提前安装以下依赖库：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>meson-python<span class="w"> </span>meson<span class="w"> </span>pybind11
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ninja-build
+</pre></div>
+</div>
+<p>此外，建议在Linux系统中使用正斜杠<code class="docutils literal notranslate"><span class="pre">/</span></code>作为路径分隔符，以避免路径解析问题。因此，推荐的安装命令如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span>--no-build-isolation<span class="w"> </span>--config-settings<span class="o">=</span>build-dir<span class="o">=</span>./<span class="o">{</span>包的名字<span class="o">}</span>/api
+</pre></div>
+</div>
+<p>此命令将确保API文件夹被正确指定为构建目录，避免路径格式问题导致的安装失败。</p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">社区版</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../info/index.html">交易功能</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">安装指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../app/index.html">策略应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../elite/index.html">Elite版</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">社区版</a><ul>
+  <li><a href="index.html">安装指南</a><ul>
+      <li>Previous: <a href="windows_install.html" title="上一章">Windows安装指南</a></li>
+      <li>Next: <a href="mac_install.html" title="下一章">Mac安装指南</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/community/install/ubuntu_install.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>投研开发环境 &#8212; VeighNa  文档</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=7d86a446"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="量化策略" href="../strategy/index.html" />
+    <link rel="prev" title="基础交易功能" href="elite_trader.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>投研开发环境<a class="headerlink" href="#id1" title="链接到此标题。">¶</a></h1>
+<section id="id2">
+<h2>启动运行<a class="headerlink" href="#id2" title="链接到此标题。">¶</a></h2>
+<section id="id3">
+<h3>点击图标启动<a class="headerlink" href="#id3" title="链接到此标题。">¶</a></h3>
+<p>安装成功后，双击桌面上VeighNa Elite Lab快捷方式：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/1.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/1.png" /></p>
+<p>即可运行VeighNa Elite Lab。</p>
+</section>
+<section id="id4">
+<h3>用户登录<a class="headerlink" href="#id4" title="链接到此标题。">¶</a></h3>
+<p>每次使用VeighNa Elite Lab都会弹出包含用户名输入框以及密码输入框的登录界面，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/2.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/2.png" /></p>
+<p>用户按照要求在用户名输入框中输入用户名，在密码输入框中输入密码后，点击【登录】按钮，即可完成登录进入VeighNa Elite Lab主运行程序，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/3.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/3.png" /></p>
+<p>请注意，若VeighNa Elite Lab启动时检测到已有更新版本发布，则会弹出【更新提示】窗口。若点击【Yes】则立即更新，若点击【No】则跳过更新正常登录。</p>
+</section>
+</section>
+<section id="id5">
+<h2>选择目录<a class="headerlink" href="#id5" title="链接到此标题。">¶</a></h2>
+<p>成功登录后，可在VeighNa Elite Lab启动界面的右下角看见运行目录（默认显示用户目录），若需切换到至指定目录运行可点击【修改】按钮在弹出的【选择Jupyter Lab运行目录】窗口中进行选择。指定完运行目录之后，则可点击界面左下角的【启动】按钮打开VeighNa Elite Lab，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/4.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/4.png" /></p>
+</section>
+<section id="id6">
+<h2>笔记本模式<a class="headerlink" href="#id6" title="链接到此标题。">¶</a></h2>
+<p>点击VeighNa Elite Lab右侧启动器中【Notebook】选项下的图标即可新建一个空白的jupyter笔记本，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/5.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/5.png" /></p>
+<section id="id7">
+<h3>笔记本运行示例<a class="headerlink" href="#id7" title="链接到此标题。">¶</a></h3>
+<p>在VeighNa Elite Lab中，用户可加载VeighNa Elite内置的模块进行研究。</p>
+<p>以CTA策略模块的回测笔记本为例，首先需要加载需要用到的组件和策略对象，然后创建回测引擎并设置回测过程中引擎用到的参数。设置完之后再添加策略对象和策略参数设置到回测引擎中，此时就可以加载数据开始跑回测了。结果跑出来之后就可以计算每日盈亏和统计指标并通过图表把结果显示出来了。</p>
+</section>
+</section>
+<section id="id8">
+<h2>交互式模式<a class="headerlink" href="#id8" title="链接到此标题。">¶</a></h2>
+<p>点击VeighNa Elite Lab右侧启动器中【Console】选项下的图标即可打开一个Python交互式环境，可以直接输入代码，然后执行，并立刻得到结果。如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/6.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/6.png" /></p>
+</section>
+<section id="id9">
+<h2>其他模式<a class="headerlink" href="#id9" title="链接到此标题。">¶</a></h2>
+<p>VeighNa Elite Lab不仅支持一个页面打开编辑多个Notebook，Ipython console和terminal终端，还支持预览和编辑更多种类的文件，如代码文件，Markdown文档，json和csv等，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/7.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/7.png" /></p>
+<section id="id10">
+<h3>命令行<a class="headerlink" href="#id10" title="链接到此标题。">¶</a></h3>
+<p>点击VeighNa Elite Lab右侧启动器中【Other】选项下的Terminal图标即可打开命令行。</p>
+</section>
+<section id="id11">
+<h3>编辑文本<a class="headerlink" href="#id11" title="链接到此标题。">¶</a></h3>
+<p>点击VeighNa Elite Lab右侧启动器中【Other】选项下的Text File图标即可新建一个空白的txt文件。VeighNa Elite Lab同时也支持编辑查看已存在的txt文件。</p>
+</section>
+<section id="markdown">
+<h3>编辑Markdown<a class="headerlink" href="#markdown" title="链接到此标题。">¶</a></h3>
+<p>点击VeighNa Elite Lab右侧启动器中【Other】选项下的Markdown File图标即可新建一个空白的md文件。VeighNa Elite Lab同时也支持编辑查看已存在的md文件。编辑Markdown File时也可点击右键选择【Show Markdown Preview】进行预览。</p>
+</section>
+<section id="python">
+<h3>编辑Python文件<a class="headerlink" href="#python" title="链接到此标题。">¶</a></h3>
+<p>点击VeighNa Elite Lab右侧启动器中【Other】选项下的Python File图标即可新建一个空白的py文件。VeighNa Elite Lab同时也支持编辑查看已存在的py文件。</p>
+</section>
+<section id="id12">
+<h3>显示帮助文档<a class="headerlink" href="#id12" title="链接到此标题。">¶</a></h3>
+<p>点击VeighNa Elite Lab右侧启动器中【Other】选项下的Show Contextual Help图标即可新建一个帮助窗口，当鼠标点击任意函数时该窗口会显示对应的帮助文档，如下图所示：</p>
+<p><img alt="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/8.png" src="https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/elite/lab/8.png" /></p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">VeighNa</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../vnpy/modules.html">vnpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/modules.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">社区版</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Elite版</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">安装使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../strategy/index.html">量化策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extension/index.html">智能交易</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Elite版</a><ul>
+  <li><a href="index.html">安装使用</a><ul>
+      <li>Previous: <a href="elite_trader.html" title="上一章">基础交易功能</a></li>
+      <li>Next: <a href="../strategy/index.html" title="下一章">量化策略</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, xiaoyou.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/elite/info/elite_lab.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
